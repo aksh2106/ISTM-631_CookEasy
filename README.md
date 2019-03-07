@@ -2,7 +2,7 @@
 Course project for ISTM 631 focusing on UI fundamentals and creating a complete web/mobile application
 
 ## About taking a pull
-Please make sure to create a branch from the 'Master' branch, clone that branch to your local machine and do your development on that branch. **Do not do anything on Master branch directly to avoid any conflicts.
+Please make sure to create a branch from the 'Master' branch, clone that branch to your local machine and do your development on that branch. **Do not do anything on Master branch directly to avoid any conflicts.**
 
 ## About pushing the code
 After you complete your development on your created branch, stage and commit the code, and push it to origin. Then, on Github, create a pull request from your created branch to Master. Look for any conflicts,if not, you are good. Merge it. Otherwise take a pull again, update your branch you're working on (on your local machine) and push again. 
