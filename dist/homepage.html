@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>CookEasy | Home</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/img/core-img/cheffy.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body controller="homepageCtrl">
+
+    <!-- Search Wrapper -->
+    <div class="search-wrapper on">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form>
+                      <input type="search" ng-model="searchText" placeholder="Enter recipe or cuisine...">
+                      <a href="#!/recipe" ><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- Top Header Area -->
+        <div class="top-header-area">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-between">
+                    <!-- Breaking News -->
+                    <div class="col-12 col-sm-6">
+                        <div class="breaking-news">
+                            <div id="breakingNewsTicker" class="ticker">
+                                <ul>
+                                    <li><a href="#">Welcome to CookEasy!</a></li>
+                                    <li><a href="#">Eat Amazing!</a></li>
+                                    <li><a href="#">Good Food, Great Ingredients!</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top Social Info -->
+                    <div class="col-12 col-sm-6">
+                        <div class="top-social-info text-right">
+                            <a href="https://www.facebook.com/CookEasy-2191559584235894/?view_public_for=2191559584235894" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com/cookeasy5/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar Area -->
+        <div class="delicious-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="deliciousNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href="index.html"><img src="/img/core-img/cookeasy_logo.png" alt="cookeasy_logo"></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Bar -->
+                            <div class="classynav">
+                                <ul>
+                                    <li class="active"><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="contact.html">Contact Us</a></li>
+                                </ul>
+
+
+                                <!-- Newsletter Form -->
+                                <div class="login-signup">
+                                    <a href="#!/login">Login</a>&nbsp;/
+                                    <a href="#!/signup">Sign-up</a>
+                                </div>
+                                <div class="search-btn" ng-click="toggleSearch()">
+                                    <i class="fa fa-search" aria-hidden="true"></i> </div>
+
+                                <div class="shopping-cart">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area">
+        <div class="hero-slides owl-carousel">
+            <!-- Single Hero Slide -->
+            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/bg1.jpg);">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                            <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
+                                <h2 data-animation="fadeInUp" data-delay="300ms">Delicious Homemade Burger</h2>
+                                <p data-animation="fadeInUp" data-delay="700ms">Indulge in the heavenly taste of a freshly made burger!</p>
+                                <a href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">See Recipe</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Hero Slide -->
+            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/bg6.jpg);">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                            <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
+                                <h2 data-animation="fadeInUp" data-delay="300ms">Pick up your chopsticks</h2>
+                                <p data-animation="fadeInUp" data-delay="700ms">How about noodles today? Yes, Cheffy would help you make it.</p>
+                                <a href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">See Recipe</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Hero Slide -->
+            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/bg7.jpg);">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                            <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
+                                <h2 data-animation="fadeInUp" data-delay="300ms">Summer Delight</h2>
+                                <p data-animation="fadeInUp" data-delay="700ms">We know you love smoothies in hot summers, so does Cheffy. How about having one right away with Cheffy?</p>
+                                <a href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">See Recipe</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Hero Area End ##### -->
+
+    <!-- ##### Best Receipe Area Start ##### -->
+    <section class="best-receipe-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>Recommended by Cheffy, loved by you!</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Single Best Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-best-receipe-area mb-30">
+                        <img src="/img/bg-img/r1.jpg" alt="">
+                        <div class="receipe-content">
+                            <button class="btn delicious-btn w-100" ng-click="setSearchText('sushi easy recipe')">
+                                <h5>Sushi Easy Recipe</h5>
+                            </button>
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Best Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-best-receipe-area mb-30">
+                        <img src="/img/bg-img/r2.jpg" alt="">
+                        <div class="receipe-content">
+                            <button class="btn delicious-btn w-100" ng-click="setSearchText('homemade burger')">
+                                <h5>Homemade Burger</h5>
+                            </button>
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" ariahidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Best Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-best-receipe-area mb-30">
+                        <img src="/img/bg-img/r3.jpg" alt="">
+                        <div class="receipe-content">
+                            <button class="btn delicious-btn w-100" ng-click="setSearchText('vegan smoothie')">
+                                <h5>Vegan Smoothie</h5>
+                            </button>
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Best Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-best-receipe-area mb-30">
+                        <img src="/img/bg-img/r4.jpg" alt="">
+                        <div class="receipe-content">
+                            <button class="btn delicious-btn w-100" ng-click="setSearchText('calabasa soup')">
+                                <h5>Calabasa soup</h5>
+                            </button>
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Best Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-best-receipe-area mb-30">
+                        <img src="/img/bg-img/r5.jpg" alt="">
+                        <div class="receipe-content">
+                            <button class="btn delicious-btn w-100" ng-click="setSearchText('homemade breakfast')">
+                                <h5>Homemade Breakfast</h5>
+                            </button>
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Best Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-best-receipe-area mb-30">
+                        <img src="/img/bg-img/r6.jpg" alt="">
+                        <div class="receipe-content">
+                            <button class="btn delicious-btn w-100" ng-click="setSearchText('healthy fruit dessert')">
+                                <h5>Healthy Fruit Dessert</h5>
+                            </button>
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Best Receipe Area End ##### -->
+
+    <!-- ##### User testimonials Area Start ##### -->
+    <section class="hero-area">
+        <div class="hero-slides owl-carousel">
+            <!-- Single Hero Slide -->
+            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/bg1.jpg);">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                            <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
+                                <h2 data-animation="fadeInUp" data-delay="300ms">See what our users have to say!</h2>
+								                  <div ng-repeat="testimonial in testimonials">
+								                   <p>{{testimonial.Comments}}</p>
+									                 <p>{{testimonial.Username}}</p>
+								                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</section>
+    <!-- ##### User testimonials Area End ##### -->
+
+    <!-- ##### Quote Subscribe Area Start ##### -->
+    <section class="quote-subscribe-adds">
+        <div class="container">
+            <div class="row">
+                <!-- Newsletter -->
+                <div class="col-12">
+                    <div class="newsletter-area">
+                        <h4>Subscribe to our newsletter</h4>
+                        <!-- Form -->
+                        <div class="newsletter-form bg-img bg-overlay" style="background-image: url(/img/bg-img/bg1.jpg);">
+                            <form action="#" method="post">
+                                <input type="email" name="email" placeholder="Enter your email">
+                                <button type="submit" class="btn delicious-btn w-100">Subscribe</button>
+                            </form>
+                            <p>Drop us your email and we would let you know of any new amazing recipes to make, as we continue to be innovative. We promise we won't spam you.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Quote Subscribe Area End ##### -->
+
+    <!-- ##### Follow Us Instagram Area Start ##### -->
+    <div class="follow-us-instagram">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h5>Follow us on Instragram</h5>
+                </div>
+            </div>
+        </div>
+        <!-- Instagram Feeds -->
+        <div class="insta-feeds d-flex flex-wrap">
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta1.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="https://www.instagram.com/p/Bvrm9-9hZcM/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta2.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="https://www.instagram.com/p/Bvrm7vlh73e/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta3.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="https://www.instagram.com/p/BvrmpavByxZ/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta4.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="https://www.instagram.com/p/Bvrm6VeBeQM/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta5.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="https://www.instagram.com/p/BvrmrJABFaL/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta6.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="https://www.instagram.com/p/BvrmkbqhR09/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta7.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="https://www.instagram.com/p/Bvrmm2qBxIh/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Follow Us Instagram Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100 d-flex flex-wrap align-items-center justify-content-between">
+                    <!-- Footer Social Info -->
+                    <div class="footer-social-info text-right">
+                        <a href="https://www.facebook.com/CookEasy-2191559584235894/?view_public_for=2191559584235894" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/cookeasy5/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        </div>
+                    <!-- Copywrite -->
+                    <p>
+                        Copyright © 2019 CookEasy - All Rights Reserved.
+                        <br />
+                        Developed by Team 6.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+<!-- ##### Footer Area End ##### -->
+
+
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="/js/active.js"></script>
+</body>
+
+</html>

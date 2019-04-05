@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="cookEasy" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="cookEasy" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="cookEasy" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="cookEasy" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Cook Easy</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.scss">
+  <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyD6khcg94wPcv8fBrRgk4vTinzg0zTCTIU",
+      authDomain: "cookeasy-istm631.firebaseapp.com",
+      databaseURL: "https://cookeasy-istm631.firebaseio.com",
+      projectId: "cookeasy-istm631",
+      storageBucket: "cookeasy-istm631.appspot.com",
+      messagingSenderId: "48507276395"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="lib/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+  <div ng-view></div>
+
+
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  <script type="text/javascript" src="bower_components/angularfire/dist/angularfire.js"></script>
+  <script src="app.js"></script>
+  <script type="text/javascript" src="recipe.js"></script>
+  <script type="text/javascript" src="recipe.js"></script>
+  <script type="text/javascript" src="search.js"></script>
+  <script type="text/javascript" src="homepage.js"></script>
+  <script type="text/javascript" src="cart.js"></script>
+  <script type="text/javascript" src="login.js"></script>
+  <script type="text/javascript" src="signup.js"></script>
+  <script type="text/javascript" src="password_reset.js"></script>
+  <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+</body>
+</html>

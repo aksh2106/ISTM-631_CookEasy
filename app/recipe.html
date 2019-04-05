@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Recipe</title>
+</head>
+<body ng-controller="welcomeCtrl">
+  <!-- ##### Header Area Start ##### -->
+  <header class="header-area">
+
+      <!-- Top Header Area -->
+      <div class="top-header-area">
+          <div class="container h-100">
+              <div class="row h-100 align-items-center justify-content-between">
+                  <!-- Breaking News -->
+                  <div class="col-12 col-sm-6">
+                      <div class="breaking-news">
+                          <div id="breakingNewsTicker" class="ticker">
+                              <ul>
+                                  <li><a href="#">Welcome to CookEasy!</a></li>
+                                  <li><a href="#">Eat Amazing!</a></li>
+                                  <li><a href="#">Good Food, Great Ingredients!</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- Top Social Info -->
+                  <div class="col-12 col-sm-6">
+                      <div class="top-social-info text-right">
+                          <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                          <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                          <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                          <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Navbar Area -->
+      <div class="delicious-main-menu">
+          <div class="classy-nav-container breakpoint-off">
+              <div class="container">
+                  <!-- Menu -->
+                  <nav class="classy-navbar justify-content-between" id="deliciousNav">
+
+                      <!-- Logo -->
+                      <a class="nav-brand" href="index.html"><img src="/img/core-img/cookeasy_logo.png" alt="cookeasy_logo"></a>
+
+                      <!-- Navbar Toggler -->
+                      <div class="classy-navbar-toggler">
+                          <span class="navbarToggler"><span></span><span></span><span></span></span>
+                      </div>
+
+                      <!-- Menu -->
+                      <div class="classy-menu">
+
+                          <!-- close btn -->
+                          <div class="classycloseIcon">
+                              <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                          </div>
+
+                          <!-- Nav Bar -->
+                          <div class="classynav">
+                              <ul>
+                                  <li class="active"><a href="index.html">Home</a></li>
+                                  <li><a href="receipe-post.html">Recipes</a></li>
+                                  <li><a href="#">Blogs</a>
+                                      <ul class="dropdown">
+                                          <li><a href="blog-post.html">Blog Post</a></li>
+                                          <li><a href="receipe-post.html">Recipe Post</a></li>
+                                      </ul>
+                                  </li>
+                                  <li><a href="#">Mega Menu</a>
+                                      <ul class="dropdown">
+                                          <li><a href="index.html">Home</a></li>
+                                          <li><a href="about.html">About Us</a></li>
+                                          <li><a href="#">Blogs</a>
+                                              <ul class="dropdown">
+                                                  <li><a href="blog-post.html">Blog Post</a></li>
+                                                  <li><a href="receipe-post.html">Recipe Post</a></li>
+                                              </ul>
+                                          </li>
+                                          <li><a href="contact.html">Contact</a></li>
+
+                                      </ul>
+                                  </li>
+                                  <li><a href="contact.html">Contact</a></li>
+                              </ul>
+
+                              <!-- Newsletter Form -->
+                              <div class="login-signup">
+                                  <a href="#">Login/Sign-up</a>
+                              </div>
+                              <div class="search-btn" ng-click="toggleSearch()">
+                                  <i class="fa fa-search" aria-hidden="true"></i> </div>
+
+                              <div class="shopping-cart">
+                                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                              </div>
+                          </div>
+                          <!-- Nav End -->
+                      </div>
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+  <!-- ##### Header Area End ##### -->
+
+  <div class="receipe-post-area">
+
+    <!-- Receipe Slider -->
+    <div class="container">
+
+      <div class="row">
+        <div class="col-12" ng-repeat="v in videos">
+          <iframe type="text/html" height="356" width="100%"
+          ng-src="{{trustedSrc(v.source)}}" allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Receipe Content Area -->
+  <div class="receipe-content-area">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-12 col-md-8">
+          <div class="receipe-headline my-5">
+            <span>March  05, 2019</span>
+            <h2>{{title | uppercase}}</h2>
+            <div class="receipe-duration">
+              <h6>Prep: 15 mins</h6>
+              <h6>Cook: 30 mins</h6>
+              <h6>Yields: 8 Servings</h6>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-lg-8">
+          <!-- Single Preparation Step -->
+          <div class="single-preparation-step d-flex" ng-repeat="step in steps">
+            <h4>{{step.stepnum}}</h4>
+            <p>{{step.stepinstructions}}</p>
+          </div>
+        </div>
+
+        <!-- Ingredients -->
+        <div class="col-12 col-lg-4">
+          <div class="ingredients">
+            <h4>Ingredients</h4>
+            <form  ng-submit="addtoCart()">
+              <ul>
+                <li ng-repeat="ingredient in ingredients">
+                  <label class="switch">
+                    <input type="checkbox" name="selectedItems()" value= "{{ingredient.name}}" ng-model="ingredient.selected">
+                    <span class="slider round"></span>
+                  </label>
+                  <label class="ingredientName">{{ingredient.value}} {{ingredient.name}}</label>
+                </li>
+              </ul>
+              <button type="submit" class="btn delicious-btn mt-30" name="AddtoCart">Add to cart</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
