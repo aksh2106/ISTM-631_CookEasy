@@ -12,11 +12,8 @@
     "rewrites": [
       {
         "source": "**",
-        "function": "app"
+        "destination": "/login.html"
       }
     ]
-  },
-  "functions": {
-    "source": "functions"
   }
 }
