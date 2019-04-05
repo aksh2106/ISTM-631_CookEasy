@@ -57,7 +57,7 @@ angular.module('cookEasy.signup', ['ngRoute', 'firebase', 'ngSanitize'])
                 var path = "/home.html";
                 $window.location.href = path;
             }).catch(function(error) {
-                window.alert('Error creating account');
+                window.alert('Error creating account' + error);
             });
            
              })
