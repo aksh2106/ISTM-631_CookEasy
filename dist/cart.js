@@ -39,9 +39,6 @@ angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
                         quantity: snap.val().defaultQuantity,
                         cost: cost
                     };
-
-                    //updates['Ingredients'].push(ingredientInfo);
-                    //console.log(updates);
                     firebase.database().ref().child('/ShoppingCart/Cart1/Ingredients').update(ingredientInfo);
 
                 }
@@ -81,7 +78,6 @@ angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
                 var updates = {};
                 updates['totalQuantity'] = $scope.totalQuantity;
                 updates['totalCost'] = $scope.totalCost;
-                console.log(updates);
                 firebase.database().ref().child('/ShoppingCart/Cart1').update(updates);
 
                 var ingredientInfo = {};
