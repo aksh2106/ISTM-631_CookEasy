@@ -165,7 +165,7 @@
         </span>
       </h4>
       <p ng-repeat="ingredient in ingredients">
-          {{ ingredient.name }} ({{ ingredient.quantity }})
+          {{ ingredient.name }} ({{ ingredient.quantity }} {{ ingredient.unit }})
           <span class="price">${{ ingredient.cost | number : 2 }}</span>
     </p>    
       <hr>
