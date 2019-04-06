@@ -2,8 +2,7 @@
 Course project for ISTM 631 focusing on UI fundamentals and creating a complete web/mobile application
 
 ## Backlogs:
-The website flow works from search recipe on homepage till checkout now (the get items button has been removed and the flow is smooth now). The updated code is on the repo and you could develop on top of it. Pending issues include: 
-1. sorting the login/signup and integrating with the website flow (Alok) - cart depends on a user_id so you need to let me know when done
+1. Sort the login/signup and integrating with the website flow (Alok) - cart depends on a user_id so you need to let me know when done
 2. Rectify Homepage - active.js, hero slider (please make it all look back to normal) (Nupur/Varsha)
 3. Check and fix mobile views for login/signup (Alok)
 4. Check and fix  mobile views for homepage/recipe page (Varsha) 
