@@ -8,7 +8,7 @@ Course project for ISTM 631 focusing on UI fundamentals and creating a complete 
 4. Check and fix  mobile views for homepage/recipe page (Varsha) 
 5. Check and fix mobile views for cart/checkout (Akshat)
 6. Order confirmation page on clicking ‘Place Order’ on checkout page (Akshat)
-7. Update database json to have pricePerUnitTable values for all ingredients used in any recipes available on website
+7. Update database json to have pricePerUnitTable values for all ingredients used in any recipes available on website (Akshat)
 8. After all the dev, make sure all header, footer and nav bar links point to the correct internal page/external urls (Nupur)
 
 Late priority (maybe after prototype):
