@@ -19,13 +19,19 @@ angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
 
     var updates = {};
     updates['user_id'] = 1;
+    var totalQuantity = 0;
+    var totalCost = 0;
     firebase.database().ref().child('/ShoppingCart/Cart1').set(updates);
     angular.forEach($scope.items, function(element){
         setCartRef.on('value', function(snapshot) {
             snapshot.forEach(function(snap) {  
                 if(snap.val().ingredientName == element){
                     var cost = snap.val().defaultQuantity * snap.val().pricePerUnit;
-
+                    totalQuantity += snap.val().defaultQuantity;
+                    totalCost += cost;
+                    updates['totalQuantity'] = totalQuantity;
+                    updates['totalCost'] = totalCost;
+                    firebase.database().ref().child('/ShoppingCart/Cart1').update(updates);
                     var ingredientInfo = {}
                     ingredientInfo[snap.val().ingredientName] = {
                         pricePerUnit: snap.val().pricePerUnit,
@@ -49,22 +55,12 @@ angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
     fetchcartRef.on('value', function(snapshot) {
         $scope.user_id = snapshot.val().user_id;
         $scope.ingredients = snapshot.val().Ingredients;
-        $scope.totalQuantity = 0;
-        snapshot.forEach(function(snap1) {
-            snap1.forEach(function(snap2) {
-                $scope.totalQuantity += snap2.val().quantity;
-            });
-        });
-        $scope.totalCost = 0;
-        snapshot.forEach(function(snap1) {
-            snap1.forEach(function(snap2) {
-                $scope.totalCost += snap2.val().cost;
-            });
-        });
+        $scope.totalQuantity = snapshot.val().totalQuantity;
+        $scope.totalCost = snapshot.val().totalCost;
     });
 
     $scope.updateQuantity = function(ingredient, num) {
-        if (ingredient.quantity + num <= 0) {
+        if (ingredient.quantity + num < 0) {
             $scope.deleteIngredient(ingredient);
         } else {
             if (ingredient.quantity + num >= 0) {
@@ -73,24 +69,29 @@ angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
                 ingredient.quantity += num;
                 ingredient.cost = ingredient.quantity * ingredient.pricePerUnit;
                 const updateRef = firebase.database().ref().child('/ShoppingCart/Cart1/Ingredients');
+
+                $scope.totalQuantity = $scope.totalQuantity - oldQuantity + ingredient.quantity;
+                if (num == 1) {
+                    $scope.totalCost = $scope.totalCost - oldCost + ingredient.cost;
+                } else {
     
+                    $scope.totalCost = $scope.totalCost - oldCost + ingredient.cost;
+                }
+
                 var updates = {};
-        
-                updates[ingredient.name] = {
+                updates['totalQuantity'] = $scope.totalQuantity;
+                updates['totalCost'] = $scope.totalCost;
+                console.log(updates);
+                firebase.database().ref().child('/ShoppingCart/Cart1').update(updates);
+
+                var ingredientInfo = {};
+                ingredientInfo[ingredient.name] = {
                     pricePerUnit: ingredient.pricePerUnit,
                     name: ingredient.name,
                     quantity: ingredient.quantity,
                     cost: ingredient.cost
                 };
-        
-                firebase.database().ref().child('/ShoppingCart/Cart1/Ingredients').update(updates);
-                $scope.totalQuantity = $scope.totalQuantity - num - oldQuantity + ingredient.quantity;
-                if (num == 1) {
-                    $scope.totalCost = $scope.totalCost - ingredient.pricePerUnit - oldCost + ingredient.cost;
-                } else {
-    
-                    $scope.totalCost = $scope.totalCost + ingredient.pricePerUnit - oldCost + ingredient.cost;
-                }
+                firebase.database().ref().child('/ShoppingCart/Cart1/Ingredients').update(ingredientInfo);
             }
         }
     };

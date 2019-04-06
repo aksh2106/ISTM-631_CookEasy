@@ -20,7 +20,6 @@ angular.module('cookEasy.checkout', ['ngRoute', 'firebase'])
                 $scope.totalQuantity += snap2.val().quantity;
             });
         });
-        console.log($scope.totalQuantity);
         $scope.totalCost = 0;
         snapshot.forEach(function(snap1) {
             snap1.forEach(function(snap2) {
