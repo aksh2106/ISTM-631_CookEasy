@@ -11,6 +11,7 @@ angular.module('cookEasy', [
   'cookEasy.login',
   'cookEasy.signup',
   'cookEasy.resetPassword',
+  'cookEasy.checkout',
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $routeProvider.otherwise({redirectTo: '/homepage'});

@@ -15,75 +15,92 @@ angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
 
     /* Get ingredients table from database. Check each element against the selected list.
     If present add it to a new list along with price ,qty */
+    var setCartRef = firebase.database().ref().child('PricePerUnitTable');
 
-    var ref1 = firebase.database().ref().child('PricePerUnitTable');
-    $scope.itemPrices = $firebaseArray(ref1);
+    var updates = {};
+    updates['user_id'] = 1;
+    firebase.database().ref().child('/ShoppingCart/Cart1').set(updates);
+    angular.forEach($scope.items, function(element){
+        setCartRef.on('value', function(snapshot) {
+            snapshot.forEach(function(snap) {  
+                if(snap.val().ingredientName == element){
+                    var cost = snap.val().defaultQuantity * snap.val().pricePerUnit;
 
-    $scope.finalList = [];
-    $scope.getItems = function(){
+                    var ingredientInfo = {}
+                    ingredientInfo[snap.val().ingredientName] = {
+                        pricePerUnit: snap.val().pricePerUnit,
+                        name: snap.val().ingredientName,
+                        quantity: snap.val().defaultQuantity,
+                        cost: cost
+                    };
 
-        angular.forEach($scope.items, function(element){
-            angular.forEach($scope.itemPrices, function(item){
-                if(item.ingredientName==element){
-                    $scope.finalList.push(item);
+                    //updates['Ingredients'].push(ingredientInfo);
+                    //console.log(updates);
+                    firebase.database().ref().child('/ShoppingCart/Cart1/Ingredients').update(ingredientInfo);
+
                 }
             });
         });
-        console.log($scope.finalList);
+    });
 
-        $scope.cartItems = [];
-        angular.forEach($scope.finalList, function(element){
-
-            $scope.ingredientInfo = {
-                pricePerUnit: element.pricePerUnit,
-                ingredientName: element.ingredientName,
-                defaultQuantity: element.defaultQuantity,
-                cost: element.defaultQuantity * element.pricePerUnit
-            };
-            $scope.cartItems.push($scope.ingredientInfo);
-        });
-        console.log($scope.cartItems);
-
+    var fetchcartRef = firebase.database().ref().child('/ShoppingCart/Cart1');
+    $scope.cartInfo = $firebaseArray(fetchcartRef);
+    
+    fetchcartRef.on('value', function(snapshot) {
+        $scope.user_id = snapshot.val().user_id;
+        $scope.ingredients = snapshot.val().Ingredients;
         $scope.totalQuantity = 0;
+        snapshot.forEach(function(snap1) {
+            snap1.forEach(function(snap2) {
+                $scope.totalQuantity += snap2.val().quantity;
+            });
+        });
         $scope.totalCost = 0;
-        angular.forEach($scope.cartItems, function(element){
-            
-            $scope.totalQuantity = $scope.totalQuantity + element.defaultQuantity;
-            $scope.totalCost = $scope.totalQuantity + element.cost;
-            var updates = {};
-
-            var ingredientInfo = {}
-            ingredientInfo[element.ingredientName] = {
-                pricePerUnit: element.pricePerUnit,
-                name: element.ingredientName,
-                quantity: element.defaultQuantity,
-                cost: element.cost
-            };
-
-            updates['user_id'] = 1;
-            updates['Ingredients'] = ingredientInfo;
-
-            // replace Cart1 with user_id to identify each cart to a user
-            firebase.database().ref().child('/ShoppingCart/Cart1').set(updates);
-        });
-
-        const cartRef = firebase.database().ref().child('/ShoppingCart/Cart1');
-        $scope.cart = $firebaseArray(cartRef);
-        cartRef.on('value', function(snapshot) {
-            $scope.user_id = snapshot.val().user_id;
-            $scope.ingredients = snapshot.val().Ingredients;
-            $scope.totalQuantity = 0;
-            snapshot.forEach(function(snap1) {
-                snap1.forEach(function(snap2) {
-                    $scope.totalQuantity += snap2.val().quantity;
-                });
-            });
-            $scope.totalCost = 0;
-            snapshot.forEach(function(snap1) {
-                snap1.forEach(function(snap2) {
-                    $scope.totalCost += snap2.val().cost;
-                });
+        snapshot.forEach(function(snap1) {
+            snap1.forEach(function(snap2) {
+                $scope.totalCost += snap2.val().cost;
             });
         });
+    });
+
+    $scope.updateQuantity = function(ingredient, num) {
+        if (ingredient.quantity + num <= 0) {
+            $scope.deleteIngredient(ingredient);
+        } else {
+            if (ingredient.quantity + num >= 0) {
+                const oldQuantity = ingredient.quantity;
+                const oldCost = ingredient.cost;
+                ingredient.quantity += num;
+                ingredient.cost = ingredient.quantity * ingredient.pricePerUnit;
+                const updateRef = firebase.database().ref().child('/ShoppingCart/Cart1/Ingredients');
+    
+                var updates = {};
+        
+                updates[ingredient.name] = {
+                    pricePerUnit: ingredient.pricePerUnit,
+                    name: ingredient.name,
+                    quantity: ingredient.quantity,
+                    cost: ingredient.cost
+                };
+        
+                firebase.database().ref().child('/ShoppingCart/Cart1/Ingredients').update(updates);
+                $scope.totalQuantity = $scope.totalQuantity - num - oldQuantity + ingredient.quantity;
+                if (num == 1) {
+                    $scope.totalCost = $scope.totalCost - ingredient.pricePerUnit - oldCost + ingredient.cost;
+                } else {
+    
+                    $scope.totalCost = $scope.totalCost + ingredient.pricePerUnit - oldCost + ingredient.cost;
+                }
+            }
+        }
+    };
+
+    $scope.emptyCart = function() {
+        firebase.database().ref().child('/ShoppingCart/Cart1').remove();
+        location.reload();
+    };
+
+    $scope.deleteIngredient = function(ingredient) {
+        firebase.database().ref().child('/ShoppingCart/Cart1/Ingredients/'+ingredient.name).remove();
     };
 }])
