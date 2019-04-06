@@ -1,6 +1,21 @@
 # ISTM-631_CookEasy
 Course project for ISTM 631 focusing on UI fundamentals and creating a complete web/mobile application
 
+## Backlogs:
+The website flow works from search recipe on homepage till checkout now (the get items button has been removed and the flow is smooth now). The updated code is on the repo and you could develop on top of it. Pending issues include: 
+1. sorting the login/signup and integrating with the website flow (Alok) - cart depends on a user_id so you need to let me know when done
+2. Rectify Homepage - active.js, hero slider (please make it all look back to normal) (Nupur/Varsha)
+3. Check and fix mobile views for login/signup (Alok)
+4. Check and fix  mobile views for homepage/recipe page (Varsha) 
+5. Check and fix mobile views for cart/checkout (Akshat)
+6. Order confirmation page on clicking ‘Place Order’ on checkout page (Akshat)
+7. Update database json to have pricePerUnitTable values for all ingredients used in any recipes available on website
+8. After all the dev, make sure all header, footer and nav bar links point to the correct internal page/external urls (Nupur)
+
+Late priority (maybe after prototype):
+1. If a recipe does not exist or if blank search is made by user, the recipe search should return proper message to user. Right now the redirection happens irrespective to recipe page which doesn’t show any content. (Varsha)
+2. How you are going to link the click on any of the ’Recommended Recipes’ on homepage to your recipe page, please figure it out if not done already (Varsha)
+
 ## About taking a pull
 Please make sure to create a branch from the 'Master' branch, clone that branch to your local machine and do your development on that branch. **Do not do anything on Master branch directly to avoid any conflicts.**
 
