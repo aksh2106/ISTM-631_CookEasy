@@ -112,7 +112,7 @@
                                         <th scope="col">Product</th>
                                         <th scope="col">Price</th>
                                         <th scope="col"></th>
-                                        <th scope="col" width="140px">Quantity</th>
+                                        <th scope="col" width="180px">Quantity</th>
                                         <th scope="col"></th>
                                         <th scope="col">Total</th>
                                         <th scope="col" width="30px"></th>
@@ -129,7 +129,7 @@
                                                     id="increaseQuantity">
                                                 <i class="fas fa-minus"></i>
                                             </button>
-                                            {{ ingredient.quantity }}
+                                            {{ ingredient.quantity }} {{ingredient.unit}}
                                             <button ng-click="updateQuantity(ingredient,1)" 
                                                     class="btn btn-sm btn-secondary ml-2"
                                                     id="decreaseQuantity">
@@ -137,7 +137,7 @@
                                             </button>
                                         </td>
                                         <td><strong>=</strong></td>
-                                        <td>${{ ingredient.cost }}</td>
+                                        <td>${{ ingredient.cost | number : 2 }}</td>
                                         <td>
                                             <button id="deleteIngredientButton" 
                                                     class="btn btn-sm mt-0 pt-0" 
@@ -152,7 +152,7 @@
                             </table>
                             <div class="col-md-12 text-right">
                                 <label id="totalLabel" class="btn mr-2 mt-3" ng-if="totalCost">
-                                    Total: ${{ totalCost }}
+                                    Total: ${{ totalCost | number : 2 }}
                                 </label>
                                 <a href="/#!/checkout" id="checkoutButton" class="btn mr-2 mt-2" ng-if="totalQuantity">
                                     <i class="fas fa-arrow-right mr-2"></i>

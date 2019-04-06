@@ -166,10 +166,10 @@
       </h4>
       <p ng-repeat="ingredient in ingredients">
           {{ ingredient.name }} ({{ ingredient.quantity }})
-          <span class="price">${{ ingredient.cost }}</span>
+          <span class="price">${{ ingredient.cost | number : 2 }}</span>
     </p>    
       <hr>
-      Total <span class="price" style="color:black"><h5>${{ totalCost }}</h5></span>
+      Total <span class="price" style="color:black"><h5>${{ totalCost | number : 2 }}</h5></span>
     </div>
   </div>
 </div>

@@ -37,7 +37,8 @@ angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
                         pricePerUnit: snap.val().pricePerUnit,
                         name: snap.val().ingredientName,
                         quantity: snap.val().defaultQuantity,
-                        cost: cost
+                        cost: cost,
+                        unit: snap.val().unit
                     };
                     firebase.database().ref().child('/ShoppingCart/Cart1/Ingredients').update(ingredientInfo);
 
@@ -54,6 +55,7 @@ angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
         $scope.ingredients = snapshot.val().Ingredients;
         $scope.totalQuantity = snapshot.val().totalQuantity;
         $scope.totalCost = snapshot.val().totalCost;
+        $scope.unit = snapshot.val().unit;
     });
 
     $scope.updateQuantity = function(ingredient, num) {
@@ -85,7 +87,8 @@ angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
                     pricePerUnit: ingredient.pricePerUnit,
                     name: ingredient.name,
                     quantity: ingredient.quantity,
-                    cost: ingredient.cost
+                    cost: ingredient.cost,
+                    unit: ingredient.unit
                 };
                 firebase.database().ref().child('/ShoppingCart/Cart1/Ingredients').update(ingredientInfo);
             }
