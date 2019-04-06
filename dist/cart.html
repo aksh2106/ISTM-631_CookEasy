@@ -78,10 +78,10 @@
 
     <div id="crumbs">
         <ul>
-            <li><a href="#1"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-            <li><a href="#2"><i class="fas fa-utensils" aria-hidden="true"></i> Recipes</a></li>
-            <li id="cart"><a href="#3" id = "active"><i class="fas fa-shopping-cart" aria-hidden="true"></i> Cart</a></li>
-            <li><a href="#4"><i class="fas fa-credit-card" aria-hidden="true"></i> Checkout</a></li>
+            <li><a href="#!/homepage"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+            <li><a href="#!/homepage#bestRecipeArea"><i class="fas fa-utensils" aria-hidden="true"></i> Recipes</a></li>
+            <li id="cart"><a href="#!/cart" id = "active"><i class="fa fa-cart-plus" aria-hidden="true"></i> Cart</a></li>
+            <li><a href="#!/checkout"><i class="fas fa-credit-card" aria-hidden="true"></i> Checkout</a></li>
         </ul>
     </div>
     <div class="body-row">
@@ -102,10 +102,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-12">
-                <button ng-click="getItems()">Get Items</button>
-            </div>
-            <div class="row">
+            <div class="row" id="cartIngredients">
                 <div class="col-12">
                     <div class="card grey lighten-5 mb-4">
                         <div class="card-body">
@@ -122,18 +119,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="ingredient in cartItems">
-                                        <td>{{ ingredient.ingredientName }}</td>
+                                    <tr ng-repeat="ingredient in ingredients">
+                                        <td>{{ ingredient.name }}</td>
                                         <td>${{ ingredient.pricePerUnit }} / ea</td>
                                         <td><strong>x</strong></td>
                                         <td>
                                             <button ng-click="updateQuantity(ingredient,-1)" 
-                                                    class="btn btn-sm btn-secondary mr-2">
+                                                    class="btn btn-sm btn-secondary mr-2"
+                                                    id="increaseQuantity">
                                                 <i class="fas fa-minus"></i>
                                             </button>
-                                            {{ ingredient.defaultQuantity }}
+                                            {{ ingredient.quantity }}
                                             <button ng-click="updateQuantity(ingredient,1)" 
-                                                    class="btn btn-sm btn-secondary ml-2">
+                                                    class="btn btn-sm btn-secondary ml-2"
+                                                    id="decreaseQuantity">
                                                 <i class="fas fa-plus"></i>
                                             </button>
                                         </td>
