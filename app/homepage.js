@@ -22,12 +22,12 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
   };
 
   $scope.redirectToRecipe = function(){
-    $window.location.href='#!/recipe';
+    $window.location.href='#!/recipe#top';
   };
 
   $scope.setSearchText = function(value) {
     CommonProp.setSearchText(value);
-    $window.location.href='#!/recipe';
+    $window.location.href='#!/recipe#top';
   };
 
   var fetchcartRef = firebase.database().ref().child('/ShoppingCart/Cart1');

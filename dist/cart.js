@@ -10,9 +10,7 @@ angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
 }])
 
 .controller('cartCtrl', ['$scope', '$firebaseArray', 'cartService', 'CommonProp', function($scope, $firebaseArray, cartService, CommonProp){
-
     $scope.items = CommonProp.getSelectedItems();
-
     /* Get ingredients table from database. Check each element against the selected list.
     If present add it to a new list along with price ,qty */
     var setCartRef = firebase.database().ref().child('PricePerUnitTable');
