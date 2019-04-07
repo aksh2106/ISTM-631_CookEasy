@@ -15,7 +15,7 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
   $scope.title = $scope.searchText;
 
   //Remove spaces
-  $scope.searchText = $scope.searchText.replace(/[\s]/g, '');
+  $scope.searchText = $scope.searchText.replace(/[\s]/g, '').toLowerCase();
 
   var ref = firebase.database().ref().child('RecipeTable/'+$scope.searchText+'/Ingredients');
   $scope.ingredients = $firebaseArray(ref);
