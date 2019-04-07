@@ -5,7 +5,7 @@ Course project for ISTM 631 focusing on UI fundamentals and creating a complete 
 
 ## Backlogs:
 1. Sort the login/signup and integrating with the website flow, `login`/ `sign up` space must change to `Hi username` and `logout` buttons on all pages when user logs in(Alok) - cart depends on a user_id so you need to let me know when done.
-2. Rectify Homepage - active.js, hero slider (please make it all look back to normal) (Nupur/Varsha) [TIP: /homepage without the #! in the url looks fine, this is some angular shit making it crazy, maybe or maybe not]
+2. Rectify Homepage - active.js, hero slider (please make it all look back to normal) (Nupur/Varsha) [TIP: /homepage without the #! in the url looks fine, this is some angular shit making it crazy, maybe or maybe not] - you'll have to search how to include external js files when using angular (since angular only considers its own js file, for example: homepage.html considers only homepage.js, no other js files are loaded)
 3. Check and fix mobile views for login/signup (Alok)
 4. Check and fix  mobile views for homepage/recipe page (Varsha) 
 5. Check and fix mobile views for cart/checkout (Akshat)
