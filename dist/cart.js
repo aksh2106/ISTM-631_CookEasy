@@ -10,40 +10,6 @@ angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
 }])
 
 .controller('cartCtrl', ['$scope', '$firebaseArray', 'cartService', 'CommonProp', function($scope, $firebaseArray, cartService, CommonProp){
-    $scope.items = CommonProp.getSelectedItems();
-    /* Get ingredients table from database. Check each element against the selected list.
-    If present add it to a new list along with price ,qty */
-    var setCartRef = firebase.database().ref().child('PricePerUnitTable');
-
-    var updates = {};
-    updates['user_id'] = 1;
-    var totalQuantity = 0;
-    var totalCost = 0;
-    firebase.database().ref().child('/ShoppingCart/Cart1').set(updates);
-    angular.forEach($scope.items, function(element){
-        setCartRef.on('value', function(snapshot) {
-            snapshot.forEach(function(snap) {  
-                if(snap.val().ingredientName == element){
-                    var cost = snap.val().defaultQuantity * snap.val().pricePerUnit;
-                    totalQuantity += snap.val().defaultQuantity;
-                    totalCost += cost;
-                    updates['totalQuantity'] = totalQuantity;
-                    updates['totalCost'] = totalCost;
-                    firebase.database().ref().child('/ShoppingCart/Cart1').update(updates);
-                    var ingredientInfo = {}
-                    ingredientInfo[snap.val().ingredientName] = {
-                        pricePerUnit: snap.val().pricePerUnit,
-                        name: snap.val().ingredientName,
-                        quantity: snap.val().defaultQuantity,
-                        cost: cost,
-                        unit: snap.val().unit
-                    };
-                    firebase.database().ref().child('/ShoppingCart/Cart1/Ingredients').update(ingredientInfo);
-
-                }
-            });
-        });
-    });
 
     var fetchcartRef = firebase.database().ref().child('/ShoppingCart/Cart1');
     $scope.cartInfo = $firebaseArray(fetchcartRef);
