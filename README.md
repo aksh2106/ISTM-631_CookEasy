@@ -5,13 +5,15 @@ Course project for ISTM 631 focusing on UI fundamentals and creating a complete 
 
 ## Backlogs:
 1. Sort the login/signup and integrating with the website flow, `login`/ `sign up` space must change to `Hi username` and `logout` buttons on all pages when user logs in(Alok) - cart depends on a user_id so you need to let me know when done.
-2. Rectify Homepage - active.js, hero slider (please make it all look back to normal) (Nupur/Varsha) [TIP: /homepage without the #! in the url looks fine, this is some angular shit making it crazy, maybe or maybe not] - you'll have to search how to include external js files when using angular (since angular only considers its own js file, for example: homepage.html considers only homepage.js, no other js files are loaded)
+2. ~~Rectify Homepage - active.js, hero slider (please make it all look back to normal) (Akshat) [TIP: /homepage without the #! in the url looks fine, this is some angular shit making it crazy, maybe or maybe not] - you'll have to search how to include external js files when using angular (since angular only considers its own js file, for example: homepage.html considers only homepage.js, no other js files are loaded)~~ -Fixed
 3. Check and fix mobile views for login/signup (Alok)
-4. Check and fix  mobile views for homepage/recipe page (Varsha) 
-5. Check and fix mobile views for cart/checkout (Akshat)
-6. Order confirmation page on clicking ‘Place Order’ on checkout page (Akshat)
-7. Update database json to have pricePerUnitTable values for all ingredients used in any recipes available on website (Akshat)
-8. After all the dev, make sure all header, footer and nav bar links point to the correct internal page/external urls (Nupur)
+4. Fix the missing footer for recipe page. Also, copy script from homepage to make search work with javascript(Varsha)
+5. Check and fix mobile views for recipe page (Varsha)
+6. ~~Check and fix mobile views for cart/checkout (Akshat)~~
+7. ~~Order confirmation page on clicking ‘Place Order’ on checkout page (Akshat)~~
+8. ~~Update database json to have pricePerUnitTable values for all ingredients used in any recipes available on website (Akshat)~~
+9. After all the dev, make sure all header, footer and nav bar links point to the correct internal page/external urls (Nupur)
+10. Bug fix breadcrumbs on cart/checkout (Akshat)
 
 Late priority (maybe after prototype):
 1. If a recipe does not exist or if blank search is made by user, the recipe search should return proper message to user. Right now the redirection happens irrespective to recipe page which doesn’t show any content. (Varsha)
