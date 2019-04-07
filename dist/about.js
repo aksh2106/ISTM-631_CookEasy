@@ -29,5 +29,11 @@ angular.module('cookEasy.about', ['ngRoute', 'firebase'])
     CommonProp.setSearchText(value);
     $window.location.href='/#!/recipe';
   };
+  
+  var fetchcartRef = firebase.database().ref().child('/ShoppingCart/Cart1');
+  $scope.cartInfo = $firebaseArray(fetchcartRef);
 
+  fetchcartRef.on('value', function(snapshot) {
+    $scope.totalQuantity = snapshot.val().totalQuantity;
+  });
 }])

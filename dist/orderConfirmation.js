@@ -30,4 +30,13 @@ angular.module('cookEasy.orderConfirmation', ['ngRoute', 'firebase'])
     $window.location.href='/#!/recipe';
   };
   document.getElementById("orderNumber").innerHTML = (Math.random()*1000000).toFixed(0);
+
+  var fetchcartRef = firebase.database().ref().child('/ShoppingCart/Cart1');
+  $scope.cartInfo = $firebaseArray(fetchcartRef);
+
+  fetchcartRef.on('value', function(snapshot) {
+    $scope.totalQuantity = snapshot.val().totalQuantity;
+  });
+
+  firebase.database().ref().child('/ShoppingCart/Cart1').remove();
 }])
