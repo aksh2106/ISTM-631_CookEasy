@@ -18,13 +18,7 @@
 
 </head>
 
-<body>
-    <!-- Preloader -->
-    <div id="preloader">
-        <i class="circle-preloader"></i>
-        <img src="img/core-img/cheffy.png" alt="">
-    </div>
-
+<body ng-controller="aboutCtrl">
     <!-- Search Wrapper -->
     <div class="search-wrapper">
         <!-- Close Btn -->
@@ -35,7 +29,9 @@
                 <div class="col-12">
                     <form>
                         <input type="search" ng-model="searchText" placeholder="Enter recipe or cuisine...">
-                        <a href="#!/recipe" ><i class="fa fa-search" aria-hidden="true"></i></button>
+                        <a href="#!/recipe" class="ml-3 h5">
+                            <i class="text-white fa fa-search" aria-hidden="true"></i>
+                        </a>
                     </form>
                 </div>
             </div>
@@ -100,8 +96,8 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="#!/homepage">Home</a></li>
-                                    <li class="active"><a href="about.html">About Us</a></li>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    <li class="active"><a href="#!/about">About Us</a></li>
+                                    <li><a href="#!/contact">Contact Us</a></li>
                                 </ul>
 
                                 <!-- Newsletter Form -->
@@ -272,15 +268,145 @@
 
     <!-- ##### All Javascript Files ##### -->
     <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
     <!-- All Plugins js -->
-    <script src="js/plugins/plugins.js"></script>
+    <script type="text/javascript" src="js/plugins/plugins.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>
+    <script type="text/javascript" src="js/active.js"></script>
+    <script type="text/javascript">
+
+        (function ($) {
+    'use strict';
+
+    var browserWindow = $(window);
+
+    // :: 1.0 Preloader Active Code
+    browserWindow.on('load', function () {
+        $('#preloader').fadeOut('slow', function () {
+            $(this).remove();
+        });
+    });
+
+    // :: 3.0 Nav Active Code
+    if ($.fn.classyNav) {
+        $('#deliciousNav').classyNav();
+    }
+
+    // :: 4.0 Search Active Code
+    var searchwrapper = $('.search-wrapper');
+    $('.search-btn').on('click', function () {
+        searchwrapper.toggleClass('on');
+    });
+    $('.close-btn').on('click', function () {
+        searchwrapper.removeClass('on');
+    });
+
+    // :: 5.0 Sliders Active Code
+    if ($.fn.owlCarousel) {
+        var welcomeSlide = $('.hero-slides');
+        var receipeSlide = $('.receipe-slider');
+
+        welcomeSlide.owlCarousel({
+            items: 1,
+            margin: 0,
+            loop: true,
+            nav: true,
+            navText: ['Prev', 'Next'],
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 8000,
+            smartSpeed: 1000
+        });
+
+        welcomeSlide.on('translate.owl.carousel', function () {
+            var slideLayer = $("[data-animation]");
+            slideLayer.each(function () {
+                var anim_name = $(this).data('animation');
+                $(this).removeClass('animated ' + anim_name).css('opacity', '0');
+            });
+        });
+
+        welcomeSlide.on('translated.owl.carousel', function () {
+            var slideLayer = welcomeSlide.find('.owl-item.active').find("[data-animation]");
+            slideLayer.each(function () {
+                var anim_name = $(this).data('animation');
+                $(this).addClass('animated ' + anim_name).css('opacity', '1');
+            });
+        });
+
+        $("[data-delay]").each(function () {
+            var anim_del = $(this).data('delay');
+            $(this).css('animation-delay', anim_del);
+        });
+
+        $("[data-duration]").each(function () {
+            var anim_dur = $(this).data('duration');
+            $(this).css('animation-duration', anim_dur);
+        });
+
+        var dot = $('.hero-slides .owl-dot');
+        dot.each(function () {
+            var index = $(this).index() + 1 + '.';
+            if (index < 10) {
+                $(this).html('0').append(index);
+            } else {
+                $(this).html(index);
+            }
+        });
+
+        receipeSlide.owlCarousel({
+            items: 1,
+            margin: 0,
+            loop: true,
+            nav: true,
+            navText: ['Prev', 'Next'],
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            smartSpeed: 1000
+        });
+    }
+
+    // :: 6.0 Gallery Active Code
+    if ($.fn.magnificPopup) {
+        $('.videobtn').magnificPopup({
+            type: 'iframe'
+        });
+    }
+
+    // :: 7.0 ScrollUp Active Code
+    if ($.fn.scrollUp) {
+        browserWindow.scrollUp({
+            scrollSpeed: 1500,
+            scrollText: '<i class="fa fa-angle-up"></i>'
+        });
+    }
+
+    // :: 8.0 CouterUp Active Code
+    if ($.fn.counterUp) {
+        $('.counter').counterUp({
+            delay: 10,
+            time: 2000
+        });
+    }
+
+    // :: 9.0 nice Select Active Code
+    if ($.fn.niceSelect) {
+        $('select').niceSelect();
+    }
+
+    // :: 11.0 prevent default a click
+    $('a[href="#"]').click(function ($) {
+        $.preventDefault()
+    });
+
+})(jQuery);
+
+    </script>
 </body>
 
 </html>

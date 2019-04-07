@@ -12,7 +12,25 @@ angular.module('cookEasy', [
   'cookEasy.signup',
   'cookEasy.resetPassword',
   'cookEasy.checkout',
-]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+  'cookEasy.orderConfirmation',
+  'cookEasy.about',
+  'cookEasy.contact'
+])
+
+.directive('script', function() {
+  return {
+    restrict: 'E',
+    scope: false,
+    link: function(scope, elem, attr) {
+      if (attr.type === 'text/javascript') {
+        var code = elem.text();
+        var f = new Function(code);
+        f();
+      }
+    }
+  };
+})
+
+.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $routeProvider.otherwise({redirectTo: '/homepage'});
 }]);
