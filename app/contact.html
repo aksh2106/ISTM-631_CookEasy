@@ -21,12 +21,6 @@
 </head>
 
 <body>
-    <!-- Preloader -->
-    <div id="preloader">
-        <i class="circle-preloader"></i>
-        <img src="img/core-img/cheffy.png" alt="">
-    </div>
-
     <!-- Search Wrapper -->
     <div class="search-wrapper">
         <!-- Close Btn -->
@@ -37,7 +31,9 @@
                 <div class="col-12">
                     <form>
                         <input type="search" ng-model="searchText" placeholder="Enter recipe or cuisine...">
-                        <a href="#!/recipe" ><i class="fa fa-search" aria-hidden="true"></i></button>
+                        <a href="/#!/recipe" class="ml-3 h5">
+                            <i class="text-white fa fa-search" aria-hidden="true"></i>
+                        </a>
                     </form>
                 </div>
             </div>
@@ -83,7 +79,7 @@
                     <nav class="classy-navbar justify-content-between" id="deliciousNav">
 
                         <!-- Logo -->
-                        <a class="nav-brand" href="#!/homepage"><img src="img/core-img/cookeasy_logo.png" alt="cookeasy_logo"></a>
+                        <a class="nav-brand" href="/"><img src="img/core-img/cookeasy_logo.png" alt="cookeasy_logo"></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -101,7 +97,7 @@
                             <!-- Nav Bar -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="#!/homepage">Home</a></li>
+                                    <li><a href="/">Home</a></li>
                                     <li><a href="about.html">About Us</a></li>
                                     <li class="active"><a href="contact.html">Contact Us</a></li>
                                 </ul>

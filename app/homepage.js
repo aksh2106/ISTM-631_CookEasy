@@ -10,7 +10,6 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
 }])
 
 .controller('homepageCtrl', ['$scope', '$firebaseArray', '$window', 'CommonProp', function($scope, $firebaseArray, $window, CommonProp){
-
   var ref = firebase.database().ref().child('UserTestimonials');
   $scope.testimonials = $firebaseArray(ref);
 
