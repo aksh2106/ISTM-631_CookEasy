@@ -16,6 +16,7 @@ Course project for ISTM 631 focusing on UI fundamentals and creating a complete 
 10. Enhance cart/checkout as much you could for mobile view (focusing mostly on media query for breadcrumbs at the top) (Varsha)
 11. ~~Media query for lens icon to display properly in mobile besides search input box, right now its invisible. Should be a small fix to css. (Akshat)~~
 12. Validate and put alt attribute for all images across all pages (Nupur)
+13. Create a 404 html page (Nupur). Integrate with angular (Akshat)
 
 Late priority (maybe after prototype):
 1. If a recipe does not exist or if blank search is made by user, the recipe search should return proper message to user. Right now the redirection happens irrespective to recipe page which doesn’t show any content. (Varsha)
