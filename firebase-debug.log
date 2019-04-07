@@ -1,30 +1,26 @@
-[debug] [2019-04-07T17:03:28.153Z] ----------------------------------------------------------------------
-[debug] [2019-04-07T17:03:28.155Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
-[debug] [2019-04-07T17:03:28.156Z] CLI Version:   6.5.0
-[debug] [2019-04-07T17:03:28.156Z] Platform:      darwin
-[debug] [2019-04-07T17:03:28.156Z] Node Version:  v10.15.1
-[debug] [2019-04-07T17:03:28.156Z] Time:          Sun Apr 07 2019 12:03:28 GMT-0500 (Central Daylight Time)
-[debug] [2019-04-07T17:03:28.156Z] ----------------------------------------------------------------------
+[debug] [2019-04-07T17:09:19.072Z] ----------------------------------------------------------------------
+[debug] [2019-04-07T17:09:19.074Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2019-04-07T17:09:19.075Z] CLI Version:   6.5.0
+[debug] [2019-04-07T17:09:19.075Z] Platform:      darwin
+[debug] [2019-04-07T17:09:19.075Z] Node Version:  v10.15.1
+[debug] [2019-04-07T17:09:19.076Z] Time:          Sun Apr 07 2019 12:09:19 GMT-0500 (Central Daylight Time)
+[debug] [2019-04-07T17:09:19.076Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2019-04-07T17:03:28.168Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-04-07T17:03:28.168Z] > authorizing via signed-in user
-[debug] [2019-04-07T17:03:28.168Z] [iam] checking project cookeasy-istm631 for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
-[debug] [2019-04-07T17:03:28.170Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2019-04-07T17:03:28.170Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- <request body omitted>
-[debug] [2019-04-07T17:03:28.433Z] <<< HTTP RESPONSE 200
-[debug] [2019-04-07T17:03:28.461Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/cookeasy-istm631:testIamPermissions  
+[debug] [2019-04-07T17:09:19.090Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-04-07T17:09:19.091Z] > authorizing via signed-in user
+[debug] [2019-04-07T17:09:19.091Z] [iam] checking project cookeasy-istm631 for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2019-04-07T17:09:19.093Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/cookeasy-istm631:testIamPermissions  
 
-[debug] [2019-04-07T17:03:28.691Z] <<< HTTP RESPONSE 200
-[debug] [2019-04-07T17:03:28.693Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/cookeasy-istm631  
+[debug] [2019-04-07T17:09:19.445Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-07T17:09:19.448Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/cookeasy-istm631  
  
-[debug] [2019-04-07T17:03:28.986Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-07T17:09:19.674Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Deploying to 'cookeasy-istm631'...
 [info] 
 [info] i  deploying database, hosting
 [info] i  database: checking rules syntax...
-[debug] [2019-04-07T17:03:28.991Z] >>> HTTP REQUEST PUT https://cookeasy-istm631.firebaseio.com/.settings/rules.json?dryRun=true  
+[debug] [2019-04-07T17:09:19.680Z] >>> HTTP REQUEST PUT https://cookeasy-istm631.firebaseio.com/.settings/rules.json?dryRun=true  
  {
   /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
   "rules": {
@@ -32,15 +28,8 @@
     ".write": true
   }
 }
-[debug] [2019-04-07T17:03:29.315Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-07T17:09:19.868Z] <<< HTTP RESPONSE 200
 [info] ✔  database: rules syntax for database cookeasy-istm631 is valid
-[debug] [2019-04-07T17:03:29.318Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/cookeasy-istm631/versions  
+[debug] [2019-04-07T17:09:19.871Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/cookeasy-istm631/versions  
 
-[debug] [2019-04-07T17:03:30.089Z] <<< HTTP RESPONSE 200
-[info] i  hosting[cookeasy-istm631]: beginning deploy...
-[info] i  hosting[cookeasy-istm631]: found 805 files in dist
-[debug] [2019-04-07T17:03:30.272Z] [hosting] hash cache [ZGlzdA] load error: lines is not defined
-[debug] [2019-04-07T17:03:31.862Z] [hosting] hash cache [ZGlzdA] stored for 805 files
-[debug] [2019-04-07T17:03:31.862Z] [hosting][hash queue][FINAL]
-[debug] [2019-04-07T17:03:31.862Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/cookeasy-istm631/versions/07e04dbfcd999b76:populateFiles  
- <request body omitted>
+[debug] [2019-04-07T17:09:20.818Z] <<< HTTP RESPONSE 200
