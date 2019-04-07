@@ -1,6 +1,8 @@
 # ISTM-631_CookEasy
 Course project for ISTM 631 focusing on UI fundamentals and creating a complete web/mobile application
 
+### Make your changes in both 'app' and 'dist' folder to keep them in sync. Simple solution is changing files in 'app' folder and in the end, copying entire contents of 'app' in 'dist'.
+
 ## Backlogs:
 1. Sort the login/signup and integrating with the website flow, `login`/ `sign up` space must change to `Hi username` and `logout` buttons on all pages when user logs in(Alok) - cart depends on a user_id so you need to let me know when done.
 2. Rectify Homepage - active.js, hero slider (please make it all look back to normal) (Nupur/Varsha) [TIP: /homepage without the #! in the url looks fine, this is some angular shit making it crazy, maybe or maybe not]
