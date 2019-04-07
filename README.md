@@ -14,6 +14,7 @@ Course project for ISTM 631 focusing on UI fundamentals and creating a complete 
 8. ~~Update database json to have pricePerUnitTable values for all ingredients used in any recipes available on website (Akshat)~~
 9. After all the dev, make sure all header, footer and nav bar links point to the correct internal page/external urls (Nupur)
 10. Bug fix breadcrumbs on cart/checkout (Akshat)
+11. Media query for lens icon to display properly in mobile besides search input box, right now its invisible. Should be a small fix to css. (Nupur)
 
 Late priority (maybe after prototype):
 1. If a recipe does not exist or if blank search is made by user, the recipe search should return proper message to user. Right now the redirection happens irrespective to recipe page which doesn’t show any content. (Varsha)
