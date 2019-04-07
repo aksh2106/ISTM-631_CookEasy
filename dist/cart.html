@@ -41,7 +41,7 @@
                         <i class="fas fa-trash-alt mr-2"></i>
                         Empty Cart
                     </button>
-                    <a href="/#!/checkout" id="checkoutButton" class="btn mr-2" ng-if="totalQuantity">
+                    <a href="/#!/checkout#top" id="checkoutButton" class="btn mr-2" ng-if="totalQuantity">
                         <i class="fas fa-arrow-right mr-2"></i>
                         Checkout
                     </a>
@@ -99,7 +99,7 @@
                                 <label id="totalLabel" class="btn mr-2 mt-3" ng-if="totalCost">
                                     Total: ${{ totalCost | number : 2 }}
                                 </label>
-                                <a href="/#!/checkout" id="checkoutButton" class="btn mr-2 mt-2" ng-if="totalQuantity">
+                                <a href="/#!/checkout#top" id="checkoutButton" class="btn mr-2 mt-2" ng-if="totalQuantity">
                                     <i class="fas fa-arrow-right mr-2"></i>
                                     Checkout
                                 </a>
