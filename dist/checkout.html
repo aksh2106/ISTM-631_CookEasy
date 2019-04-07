@@ -20,170 +20,103 @@
 </head>
 
 <body ng-controller="checkoutCtrl">
-
-    <!-- Search Wrapper -->
-    <div class="search-wrapper">
-        <!-- Close Btn -->
-        <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <form action="#" method="post">
-                        <input type="search" name="search" placeholder="Type any keywords...">
-                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <div id="crumbs">
+        
+        <ul>
+            <img src="img/core-img/cheffy_checkout.png" alt="" id="cheffy-img">
+            <li><a href="#!/homepage"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+            <li><a href="#!/homepage#bestRecipeArea"><i class="fa fa-cutlery" aria-hidden="true"></i> Recipes</a></li>
+            <li><a href="#!/cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Cart</a></li>
+            <li><a href="#!/checkout" id = "active"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Checkout</a></li>
+        </ul>
     </div>
+    <div class="body-row">
+        <div class="col-75">
+            <div class="checkout">
+                <form action="#">
+                    <div class="row">
+                        <div class="col-50">
+                            <h3>Billing Address</h3>
+                            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                            <input type="text" id="email" name="email" placeholder="john@example.com">
+                            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+                            <label for="city"><i class="fa fa-institution"></i> City</label>
+                            <input type="text" id="city" name="city" placeholder="New York">
 
-    <!-- ##### Header Area Start ##### -->
-    <header class="header-area">
-
-        <!-- Top Header Area -->
-        <div class="top-header-area">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center justify-content-between">
-                    <!-- Breaking News -->
-                    <div class="col-12 col-sm-6">
-                        <div class="breaking-news">
-                            <div id="breakingNewsTicker" class="ticker">
-                                <ul>
-                                    <li><a href="#">Welcome to CookEasy!</a></li>
-                                    <li><a href="#">Eat Amazing!</a></li>
-                                    <li><a href="#">Good Food, Great Ingredients!</a></li>
-                                </ul>
+                            <div class="row">
+                                <div class="col-50">
+                                    <label for="state">State</label>
+                                    <input type="text" id="state" name="state" placeholder="NY">
+                                </div>
+                                <div class="col-50">
+                                    <label for="zip">Zip</label>
+                                    <input type="text" id="zip" name="zip" placeholder="10001">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-50">
+                            <h3>Payment</h3>
+                            <label for="fname">Accepted Cards</label>
+                            <div class="icon-container">
+                                <i class="fa fa-cc-visa" style="color:navy;"></i>
+                                <i class="fa fa-cc-amex" style="color:blue;"></i>
+                                <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                                <i class="fa fa-cc-discover" style="color:orange;"></i>
+                            </div>
+                            <label for="cname">Name on Card</label>
+                            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                            <label for="ccnum">Credit card number</label>
+                            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                            <label for="expmonth">Exp Month</label>
+                            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                            <div class="row">
+                                <div class="col-50">
+                                    <label for="expyear">Exp Year</label>
+                                    <input type="text" id="expyear" name="expyear" placeholder="2018">
+                                </div>
+                                <div class="col-50">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" name="cvv" placeholder="352">
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Top Social Info -->
-                    <div class="col-12 col-sm-6">
-                        <div class="top-social-info text-right">
-                            <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
+                    <label>
+                        <input type="checkbox" 
+                                checked="checked" 
+                                name="sameadr"> Shipping address same as billing
+                    </label>
+                    <a href="orderConfirmation.html" 
+                            value="Place Order" 
+                            class="btn" 
+                            ng-if="totalQuantity">Place Order</a>
+                </form>
             </div>
         </div>
-
-       
-    </header>
-    <!-- ##### Header Area End ##### -->
-
-    <!-- ##### Hero Area Start ##### -->
-
-
-<div id="crumbs">
-     
-     <ul>
-        <img src="img/core-img/cheffy_checkout.png" alt="" id="cheffy-img">
-        <li><a href="#!/homepage"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-        <li><a href="#!/homepage#bestRecipeArea"><i class="fa fa-cutlery" aria-hidden="true"></i> Recipes</a></li>
-        <li><a href="#!/cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Cart</a></li>
-        <li><a href="#!/checkout" id = "active"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Checkout</a></li>
-    </ul>
-</div>
-
-
- <div class="body-row">
-  <div class="col-75">
-    <div class="checkout">
-      <form action="/action_page.php">
-
-        <div class="row">
-          <div class="col-50">
-            <h3>Billing Address</h3>
-            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
-            <label for="email"><i class="fa fa-envelope"></i> Email</label>
-            <input type="text" id="email" name="email" placeholder="john@example.com">
-            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
-            <label for="city"><i class="fa fa-institution"></i> City</label>
-            <input type="text" id="city" name="city" placeholder="New York">
-
-            <div class="row">
-              <div class="col-50">
-                <label for="state">State</label>
-                <input type="text" id="state" name="state" placeholder="NY">
-              </div>
-              <div class="col-50">
-                <label for="zip">Zip</label>
-                <input type="text" id="zip" name="zip" placeholder="10001">
-              </div>
+        <div class="col-25">
+            <div class="checkout">
+                <h4>Cart 
+                    <span class="price" style="color:black">
+                        <i class="fa fa-shopping-cart"></i> 
+                        <b>{{ totalQuantity }}</b>
+                    </span>
+                </h4>
+                <p ng-repeat="ingredient in ingredients">
+                    {{ ingredient.name }} ({{ ingredient.quantity }} {{ ingredient.unit }})
+                    <span class="price">${{ ingredient.cost | number : 2 }}</span>
+                </p>    
+                <hr>
+                Total 
+                <span class="price" style="color:black">
+                    <h5>${{ totalCost | number : 2 }}</h5>
+                </span>
             </div>
-          </div>
-
-          <div class="col-50">
-            <h3>Payment</h3>
-            <label for="fname">Accepted Cards</label>
-            <div class="icon-container">
-              <i class="fa fa-cc-visa" style="color:navy;"></i>
-              <i class="fa fa-cc-amex" style="color:blue;"></i>
-              <i class="fa fa-cc-mastercard" style="color:red;"></i>
-              <i class="fa fa-cc-discover" style="color:orange;"></i>
-            </div>
-            <label for="cname">Name on Card</label>
-            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
-            <label for="ccnum">Credit card number</label>
-            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-            <label for="expmonth">Exp Month</label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="September">
-
-            <div class="row">
-              <div class="col-50">
-                <label for="expyear">Exp Year</label>
-                <input type="text" id="expyear" name="expyear" placeholder="2018">
-              </div>
-              <div class="col-50">
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="352">
-              </div>
-            </div>
-          </div>
-
         </div>
-        <label>
-          <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-        </label>
-        <a href="orderConfirmation.html" value="Place Order" class="btn" ng-if="totalQuantity">Place Order</a>
-      </form>
     </div>
-  </div>
 
-  <div class="col-25">
-    <div class="checkout">
-      <h4>Cart 
-        <span class="price" style="color:black">
-          <i class="fa fa-shopping-cart"></i> 
-          <b>{{ totalQuantity }}</b>
-        </span>
-      </h4>
-      <p ng-repeat="ingredient in ingredients">
-          {{ ingredient.name }} ({{ ingredient.quantity }} {{ ingredient.unit }})
-          <span class="price">${{ ingredient.cost | number : 2 }}</span>
-    </p>    
-      <hr>
-      Total <span class="price" style="color:black"><h5>${{ totalCost | number : 2 }}</h5></span>
-    </div>
-  </div>
-</div>
-    <!-- ##### Hero Area End ##### -->
-
-    <!-- ##### Best Receipe Area Start ##### -->
-   
-    <!-- ##### CTA Area End ##### -->
-
-    <!-- ##### Quote Subscribe Area Start ##### -->
-   
-    <!-- ##### Quote Subscribe Area End ##### -->
-
-    <!-- ##### Follow Us Instagram Area Start ##### -->
     <div class="follow-us-instagram">
         <div class="container">
             <div class="row">
@@ -274,7 +207,7 @@
                     </div>
                     <!-- Footer Logo -->
                     <div class="footer-logo">
-                        <a href="index.html"><img src="img/core-img/cookeasy_logo.png" alt=""></a>
+                        <a href="#!/homepage"><img src="img/core-img/cookeasy_logo.png" alt=""></a>
                     </div>
                     <!-- Copywrite -->
                     <p>

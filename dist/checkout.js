@@ -27,4 +27,11 @@ angular.module('cookEasy.checkout', ['ngRoute', 'firebase'])
             });
         });
     });
+
+    $scope.placeOrder = function() {
+        var elements = document.getElementById("paymentDetailsForm").elements;
+        for (var i = 0; i < elements.length; i++) {
+            console.log(elements[i]);
+        }
+    }
 }])
