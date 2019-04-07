@@ -61,6 +61,13 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
     $window.location.href = "#!/cart";
   };
 
+  var fetchcartRef = firebase.database().ref().child('/ShoppingCart/Cart1');
+  $scope.cartInfo = $firebaseArray(fetchcartRef);
+
+  fetchcartRef.on('value', function(snapshot) {
+    $scope.totalQuantity = snapshot.val().totalQuantity;
+  });
+
 }])
 
 .service('cartService', function(){
