@@ -29,5 +29,5 @@ angular.module('cookEasy.orderConfirmation', ['ngRoute', 'firebase'])
     CommonProp.setSearchText(value);
     $window.location.href='/#!/recipe';
   };
-
+  document.getElementById("orderNumber").innerHTML = (Math.random()*1000000).toFixed(0);
 }])
