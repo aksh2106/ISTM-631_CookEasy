@@ -10,7 +10,6 @@ angular.module('cookEasy.orderConfirmation', ['ngRoute', 'firebase'])
 }])
 
 .controller('orderConfirmationCtrl', ['$scope', '$firebaseArray', '$window', 'CommonProp', function($scope, $firebaseArray, $window, CommonProp){
-  console.log("Akshat");
   var ref = firebase.database().ref().child('UserTestimonials');
   $scope.testimonials = $firebaseArray(ref);
 

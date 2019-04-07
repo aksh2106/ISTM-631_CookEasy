@@ -13,6 +13,8 @@ angular.module('cookEasy', [
   'cookEasy.resetPassword',
   'cookEasy.checkout',
   'cookEasy.orderConfirmation',
+  'cookEasy.about',
+  'cookEasy.contact'
 ])
 
 .directive('script', function() {

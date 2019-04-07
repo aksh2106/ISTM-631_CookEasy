@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('cookEasy.orderConfirmation', ['ngRoute', 'firebase'])
+angular.module('cookEasy.contact', ['ngRoute', 'firebase'])
 
 .config(['$routeProvider', function($routeProvider){
-  $routeProvider.when('/orderConfirmation', {
-    templateUrl: 'orderConfirmation.html',
-    controller: 'orderConfirmationCtrl'
+  $routeProvider.when('/contact', {
+    templateUrl: 'contact.html',
+    controller: 'contactCtrl'
   });
 }])
 
-.controller('orderConfirmationCtrl', ['$scope', '$firebaseArray', '$window', 'CommonProp', function($scope, $firebaseArray, $window, CommonProp){
+.controller('contactCtrl', ['$scope', '$firebaseArray', '$window', 'CommonProp', function($scope, $firebaseArray, $window, CommonProp){
   var ref = firebase.database().ref().child('UserTestimonials');
   $scope.testimonials = $firebaseArray(ref);
 
