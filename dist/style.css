@@ -420,6 +420,9 @@ textarea:focus {
     right: 0;
     top: 0;
     z-index: 100; }
+    @media only screen and (max-width: 767px) {
+      .search-wrapper .close-btn {
+        width: 35px; } }
   .search-wrapper.on {
     top: 0; }
 
@@ -1515,5 +1518,5 @@ input:checked + .slider:before {
 
 .player-area{
   width:75%;
-  height=150px;
+  height:150px;
 }
