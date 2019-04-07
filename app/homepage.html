@@ -131,7 +131,7 @@
                             <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
                                 <h2 data-animation="fadeInUp" data-delay="300ms">Delicious Homemade Burger</h2>
                                 <p data-animation="fadeInUp" data-delay="700ms">Indulge in the heavenly taste of a freshly made burger!</p>
-                                <a href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">See Recipe</a>
+                                <button class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms" ng-click="setSearchText('homemade burger')">See Recipe</button>
                             </div>
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                             <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
                                 <h2 data-animation="fadeInUp" data-delay="300ms">Pick up your chopsticks</h2>
                                 <p data-animation="fadeInUp" data-delay="700ms">How about noodles today? Yes, Cheffy would help you make it.</p>
-                                <a href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">See Recipe</a>
+                                <button class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms" ng-click="setSearchText('healthy fruit dessert')">See Recipe</button>
                             </div>
                         </div>
                     </div>
@@ -159,7 +159,7 @@
                             <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
                                 <h2 data-animation="fadeInUp" data-delay="300ms">Summer Delight</h2>
                                 <p data-animation="fadeInUp" data-delay="700ms">We know you love smoothies in hot summers, so does Cheffy. How about having one right away with Cheffy?</p>
-                                <a href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">See Recipe</a>
+                                <button class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms" ng-click="setSearchText('summer smoothie')">See Recipe</button>
                             </div>
                         </div>
                     </div>
@@ -182,12 +182,12 @@
 
             <div class="row">
                 <!-- Single Best Receipe Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
+                <div class="col-12 col-sm-6 col-lg-4 mx-auto">
                     <div class="single-best-receipe-area mb-30">
-                        <img src="/img/bg-img/r1.jpg" alt="">
+                        <img src="/img/bg-img/vanilla-icecream-resized.jpg" alt="">
                         <div class="receipe-content pt-0">
-                            <button class="btn" ng-click="setSearchText('sushi easy recipe')">
-                                <h5>Sushi Easy Recipe</h5>
+                            <button class="btn" ng-click="setSearchText('vanilla icecream')">
+                                <h5>Vanilla Icecream</h5>
                             </button>
                             <div class="ratings">
                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -201,7 +201,7 @@
                 </div>
 
                 <!-- Single Best Receipe Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
+                <div class="col-12 col-sm-6 col-lg-4 mx-auto">
                     <div class="single-best-receipe-area mb-30">
                         <img src="/img/bg-img/r2.jpg" alt="">
                         <div class="receipe-content pt-0">
@@ -220,7 +220,7 @@
                 </div>
 
                 <!-- Single Best Receipe Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
+                <div class="col-12 col-sm-6 col-lg-4 mx-auto">
                     <div class="single-best-receipe-area mb-30">
                         <img src="/img/bg-img/r3.jpg" alt="">
                         <div class="receipe-content pt-0">
@@ -239,12 +239,12 @@
                 </div>
 
                 <!-- Single Best Receipe Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
+                <div class="col-12 col-sm-6 col-lg-4 mx-auto">
                     <div class="single-best-receipe-area mb-30">
                         <img src="/img/bg-img/r4.jpg" alt="">
                         <div class="receipe-content pt-0">
-                            <button class="btn" ng-click="setSearchText('calabasa soup')">
-                                <h5>Calabasa soup</h5>
+                            <button class="btn" ng-click="setSearchText('summer smoothie')">
+                                <h5>Summer Smoothie</h5>
                             </button>
                             <div class="ratings">
                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -258,26 +258,7 @@
                 </div>
 
                 <!-- Single Best Receipe Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-best-receipe-area mb-30">
-                        <img src="/img/bg-img/r5.jpg" alt="">
-                        <div class="receipe-content pt-0">
-                            <button class="btn" ng-click="setSearchText('homemade breakfast')">
-                                <h5>Homemade Breakfast</h5>
-                            </button>
-                            <div class="ratings">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Best Receipe Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
+                <div class="col-12 col-sm-6 col-lg-4 mx-auto">
                     <div class="single-best-receipe-area mb-30">
                         <img src="/img/bg-img/r6.jpg" alt="">
                         <div class="receipe-content pt-0">
@@ -300,13 +281,13 @@
     <!-- ##### Best Receipe Area End ##### -->
 
     <!-- ##### User testimonials Area Start ##### -->
-    <section class="hero-area">
+    <section class="hero-area mb-5">
         <div class="hero-slides owl-carousel">
             <!-- Single Hero Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/bg1.jpg);">
+            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/Teresa-Plates.jpeg);">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
-                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-6 mx-auto">
                             <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
                                 <h2 data-animation="fadeInUp" data-delay="300ms">See what our users have to say!</h2>
 								                  <div ng-repeat="testimonial in testimonials">
@@ -324,19 +305,17 @@
     <!-- ##### Quote Subscribe Area Start ##### -->
     <section class="quote-subscribe-adds">
         <div class="container">
-            <div class="row">
-                <!-- Newsletter -->
-                <div class="col-12">
-                    <div class="newsletter-area">
-                        <h4>Subscribe to our newsletter</h4>
-                        <!-- Form -->
-                        <div class="newsletter-form bg-img bg-overlay" style="background-image: url(/img/bg-img/bg1.jpg);">
-                            <form action="#" method="post">
-                                <input type="email" name="email" placeholder="Enter your email">
-                                <button type="submit" class="btn delicious-btn w-100">Subscribe</button>
-                            </form>
-                            <p>Drop us your email and we would let you know of any new amazing recipes to make, as we continue to be innovative. We promise we won't spam you.</p>
-                        </div>
+            <!-- Newsletter -->
+            <div class="col-12">
+                <div class="newsletter-area">
+                    <h4>Subscribe to our newsletter</h4>
+                    <!-- Form -->
+                    <div class="newsletter-form bg-img bg-overlay" style="background-image: url(/img/bg-img/bg1.jpg);">
+                        <form action="#" method="post">
+                            <input type="email" name="email" placeholder="Enter your email">
+                            <button type="submit" class="btn delicious-btn w-100">Subscribe</button>
+                        </form>
+                        <p>Drop us your email and we would let you know of any new amazing recipes to make, as we continue to be innovative. We promise we won't spam you.</p>
                     </div>
                 </div>
             </div>
