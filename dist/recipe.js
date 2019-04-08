@@ -14,35 +14,47 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
   $scope.searchText = CommonProp.getSearchText();
   $scope.title = $scope.searchText;
 
-  //Remove spaces
-  $scope.searchText = $scope.searchText.replace(/[\s]/g, '').toLowerCase();
+  if ($scope.searchText) {
+    //Remove spaces
+    $scope.searchText = $scope.searchText.replace(/[\s]/g, '').toLowerCase();
 
-  var ref = firebase.database().ref().child('RecipeTable/'+$scope.searchText+'/Ingredients');
-  $scope.ingredients = $firebaseArray(ref);
+    var updates = {};
+    updates['recipeInContext'] = $scope.searchText;
+    firebase.database().ref().child('/TempTable').update(updates);
+  }
 
-  $scope.createRecipe = function() {
-    var name = $scope.ingredient.ingredientName;
-    var val =  $scope.ingredient.ingredientVal;
-    $scope.ingredients.$add ({
-      name: name,
-      value: val
-    }).then(function(ref){
-      console.log(ref);
-    }, function(error){
-      console.log(error);
-    });
-  };
+  var tempRef = firebase.database().ref().child('/TempTable');
+  $scope.temp = $firebaseArray(tempRef);
 
-  var ref2 = firebase.database().ref().child('RecipeTable/'+$scope.searchText+'/Instructions');
-  $scope.steps = $firebaseArray(ref2);
+  tempRef.on('value', function(snapshot) {
+    $scope.searchText = snapshot.val().recipeInContext;
 
-  var ref3 = firebase.database().ref().child('RecipeTable/'+$scope.searchText+'/Video');
-  $scope.videos = $firebaseArray(ref3);
+    var ref = firebase.database().ref().child('RecipeTable/'+$scope.searchText+'/Ingredients');
+    $scope.ingredients = $firebaseArray(ref);
+  
+    $scope.createRecipe = function() {
+      var name = $scope.ingredient.ingredientName;
+      var val =  $scope.ingredient.ingredientVal;
+      $scope.ingredients.$add ({
+        name: name,
+        value: val
+      }).then(function(ref){
+        console.log(ref);
+      }, function(error){
+        console.log(error);
+      });
+    };
+  
+    var ref2 = firebase.database().ref().child('RecipeTable/'+$scope.searchText+'/Instructions');
+    $scope.steps = $firebaseArray(ref2);
+  
+    var ref3 = firebase.database().ref().child('RecipeTable/'+$scope.searchText+'/Video');
+    $scope.videos = $firebaseArray(ref3);
+  });
 
   $scope.trustedSrc = function(src){
     return $sce.trustAsResourceUrl(src);
   };
-
 
   $scope.selection = [];
   $scope.selectedItems = function selectedItems(){
