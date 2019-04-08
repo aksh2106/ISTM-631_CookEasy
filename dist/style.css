@@ -1521,7 +1521,6 @@ input:checked + .slider:before {
   height:150px;
 }
 
-
 #notfound {
   position: relative;
   height: 100vh;
