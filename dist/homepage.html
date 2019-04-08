@@ -73,7 +73,7 @@
         <!-- Navbar Area -->
         <div class="delicious-main-menu">
             <div class="classy-nav-container breakpoint-off">
-                <div class="container">
+                <div class="container col-md-11">
                     <!-- Menu -->
                     <nav class="classy-navbar justify-content-between" id="deliciousNav">
 
@@ -114,6 +114,9 @@
                                         <i class="h5 text-danger fas fa-shopping-cart" aria-hidden="true"></i>
                                         <a class="ml-2 text-danger h4" href="#!/cart" ng-if="totalQuantity">{{ totalQuantity }} items</a>
                                     </a>
+                                </div>
+                                <div class="shopping-cart" ng-if="totalQuantity == null">
+                                    <img src="img/core-img/cheffy_cart.png" width="270px">
                                 </div>
                             </div>
                             <!-- Nav End -->
