@@ -66,5 +66,13 @@ angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
 
     $scope.deleteIngredient = function(ingredient) {
         firebase.database().ref().child('/ShoppingCart/Cart1/Ingredients/'+ingredient.name).remove();
+
+        $scope.totalQuantity = $scope.totalQuantity - ingredient.quantity;
+        $scope.totalCost = $scope.totalCost - ingredient.cost;
+
+        var updates = {};
+        updates['totalQuantity'] = $scope.totalQuantity;
+        updates['totalCost'] = $scope.totalCost;
+        firebase.database().ref().child('/ShoppingCart/Cart1').update(updates);
     };
 }])
