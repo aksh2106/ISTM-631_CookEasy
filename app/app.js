@@ -14,7 +14,8 @@ angular.module('cookEasy', [
   'cookEasy.checkout',
   'cookEasy.orderConfirmation',
   'cookEasy.about',
-  'cookEasy.contact'
+  'cookEasy.contact',
+  'cookEasy.404'
 ])
 
 .directive('script', function() {
@@ -32,5 +33,5 @@ angular.module('cookEasy', [
 })
 
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/homepage'});
+  $routeProvider.otherwise({redirectTo: '/404'});
 }]);
