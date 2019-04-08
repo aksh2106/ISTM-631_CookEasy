@@ -33,5 +33,6 @@ angular.module('cookEasy', [
 })
 
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+  $routeProvider.when("/", {redirectTo : "/homepage"})
   $routeProvider.otherwise({redirectTo: '/404'});
 }]);
