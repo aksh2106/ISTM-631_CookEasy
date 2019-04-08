@@ -39,4 +39,5 @@ angular.module('cookEasy.orderConfirmation', ['ngRoute', 'firebase'])
   });
 
   firebase.database().ref().child('/ShoppingCart/Cart1').remove();
+  firebase.database().ref().child('/TempTable').remove();
 }])
