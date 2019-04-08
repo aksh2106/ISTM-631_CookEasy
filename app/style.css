@@ -752,7 +752,8 @@ textarea:focus {
     border-bottom: 3px solid #e03f1f; }
   .single-best-receipe-area .receipe-content {
     padding-top: 30px;
-    text-align: center; }
+    text-align: center;
+     }
     .single-best-receipe-area .receipe-content h5 {
       font-size: 18px;
       margin-bottom: 10px;
