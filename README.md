@@ -17,9 +17,11 @@ Course project for ISTM 631 focusing on UI fundamentals and creating a complete 
 11. ~~Media query for lens icon to display properly in mobile besides search input box, right now its invisible. Should be a small fix to css. (Akshat)~~
 12. Validate and put alt attribute for all images across all pages (Nupur)
 13. ~~Create a 404 html page (Nupur). Integrate with angular (Akshat)~~
+14. ~~Persist searched recipe page till order is confirmed~~
 
 Late priority (maybe after prototype):
 1. If a recipe does not exist or if blank search is made by user, the recipe search should return proper message to user. Right now the redirection happens irrespective to recipe page which doesn’t show any content. (Varsha)
+2. Persist selection of ingredients made by user on recipe page (Varsha)
 
 ## About taking a pull
 Please make sure to create a branch from the 'Master' branch, clone that branch to your local machine and do your development on that branch. **Do not do anything on Master branch directly to avoid any conflicts.**
