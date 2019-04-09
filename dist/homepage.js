@@ -39,16 +39,18 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
 
   firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-        
-        if(CommonProp.getDisplayName() != "")
-        $scope.divText = 'Hello, ' + CommonProp.getDisplayName() + '! ';
-        else
-        $scope.divText = 'Hello!'
-
-        $scope.show = !$scope.show;
-
-        $scope.$apply();
-    
+        var tempRef = firebase.database().ref().child('/TempTable');
+        $scope.temp = $firebaseArray(tempRef);
+        tempRef.on('value', function(snapshot) {
+          if(snapshot.val().userNameInContext != "")
+          $scope.divText = 'Hello, ' + snapshot.val().userNameInContext + '! ';
+          else
+          $scope.divText = 'Hello!'
+  
+          $scope.show = !$scope.show;
+  
+          $scope.$apply();
+        });
       } 
     });
 
