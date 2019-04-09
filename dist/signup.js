@@ -9,17 +9,13 @@ angular.module('cookEasy.signup', ['ngRoute', 'firebase', 'ngSanitize'])
   });
 }])
 
-.controller('AddUserCtrl', ['$scope', '$window', '$firebaseArray', function($scope, $window, $firebaseArray) {
+.controller('AddUserCtrl', ['$scope', '$window', 'CommonProp', '$firebaseArray', function($scope, $window, CommonProp, $firebaseArray) {
 
-    // firebase.auth().onAuthStateChanged(function(user) {
-    //   if (user) {
-    //     console.log('inside if');
-    //     var path = "/home.html";
-    //     window.location.href = path;
-    
-    //   } 
-    //   console.log('outside if');
-    // });
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        $window.location.href = '/#!/homepage'
+      } 
+    });
 
      var usersRef = firebase.database().ref().child('UserDetails');
 
@@ -51,11 +47,9 @@ angular.module('cookEasy.signup', ['ngRoute', 'firebase', 'ngSanitize'])
             .then(function() {
             
             firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
-                user.updateProfile({
-                displayName: $scope.Name
-                })
-                var path = "/home.html";
-                $window.location.href = path;
+
+                CommonProp.setDisplayName($scope.Name);
+                $window.location.href = '/#!/homepage'
             }).catch(function(error) {
                 window.alert('Error creating account' + error);
             });

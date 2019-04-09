@@ -36,4 +36,30 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
   fetchcartRef.on('value', function(snapshot) {
     $scope.totalQuantity = snapshot.val().totalQuantity;
   });
+
+  firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        
+        if(CommonProp.getDisplayName() != "")
+        $scope.divText = 'Hello, ' + CommonProp.getDisplayName() + '! ';
+        else
+        $scope.divText = 'Hello!'
+
+        $scope.show = !$scope.show;
+
+        $scope.$apply();
+    
+      } 
+    });
+
+    $scope.signOut = function(){
+
+      firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+      }, function(error) {
+        console.log(error);
+      });
+      
+    }
+
 }])
