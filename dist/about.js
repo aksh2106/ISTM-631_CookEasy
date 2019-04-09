@@ -10,6 +10,32 @@ angular.module('cookEasy.about', ['ngRoute', 'firebase'])
 }])
 
 .controller('aboutCtrl', ['$scope', '$firebaseArray', '$window', 'CommonProp', function($scope, $firebaseArray, $window, CommonProp){
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      var tempRef = firebase.database().ref().child('/TempTable');
+      $scope.temp = $firebaseArray(tempRef);
+      tempRef.on('value', function(snapshot) {
+        if(snapshot.val().userNameInContext != "")
+        $scope.divText = 'Hello, ' + snapshot.val().userNameInContext + '! ';
+        else
+        $scope.divText = 'Hello!'
+
+        $scope.show = !$scope.show;
+
+        $scope.$apply();
+      });
+    } 
+  });
+
+  $scope.signOut = function(){
+
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+    }, function(error) {
+      console.log(error);
+    });
+    
+  }
   var ref = firebase.database().ref().child('UserTestimonials');
   $scope.testimonials = $firebaseArray(ref);
 

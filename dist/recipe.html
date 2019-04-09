@@ -84,9 +84,14 @@
                                 </ul>
 
                                 <!-- Newsletter Form -->
-                                <div class="login-signup">
-                                    <a href="user/login.html">Login</a>&nbsp;/
-                                    <a href="user/signup.html">Sign-up</a>
+                                <div class="login-signup" ng-hide="show">
+                                    <a href="#!/login">Login</a>&nbsp;/
+                                    <a href="#!/signup">Sign-up</a>
+                                </div>
+
+                                <div class="loggedin ml-4 pl-4 mt-2 mr-4" ng-show="show">
+                                    <label class = "h5 greeting" ng-bind="divText"></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="#!/login" ng-click="signOut()">Sign out</a>
                                 </div>
                                 <div class="shopping-cart">
                                     <a href="#!/cart">

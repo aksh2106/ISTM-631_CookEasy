@@ -9,64 +9,62 @@ angular.module('cookEasy.signup', ['ngRoute', 'firebase', 'ngSanitize'])
   });
 }])
 
-.controller('AddUserCtrl', ['$scope', '$window', '$firebaseArray', function($scope, $window, $firebaseArray) {
+.controller('AddUserCtrl', ['$scope', '$window', 'CommonProp', '$firebaseArray', function($scope, $window, CommonProp, $firebaseArray) {
 
-    // firebase.auth().onAuthStateChanged(function(user) {
-    //   if (user) {
-    //     console.log('inside if');
-    //     var path = "/home.html";
-    //     window.location.href = path;
-    
-    //   } 
-    //   console.log('outside if');
-    // });
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      $window.location.href = '/#!/homepage'
+    } 
+  });
 
-     var usersRef = firebase.database().ref().child('UserDetails');
+  var usersRef = firebase.database().ref().child('UserDetails');
 
-     $scope.users = $firebaseArray(usersRef);
+  $scope.users = $firebaseArray(usersRef);
 
-     $scope.addUser = function () {
+  $scope.addUser = function () {
 
-            // CREATE A UNIQUE ID
-            var timestamp = new Date().valueOf();
+    // CREATE A UNIQUE ID
+    var timestamp = new Date().valueOf();
 
-            $scope.users.$add({
-                Userid: timestamp,
-                Name: $scope.Name,
-                Password: $scope.Password,
-                Phone: $scope.Phone, 
-                Address: $scope.Address, 
-                City: $scope.City, 
-                State: $scope.State, 
-                Zip: $scope.Zip, 
-                Email: $scope.Email,
-            });
+    $scope.users.$add({
+        Userid: timestamp,
+        Name: $scope.Name,
+        Password: $scope.Password,
+        Phone: $scope.Phone, 
+        Address: $scope.Address, 
+        City: $scope.City, 
+        State: $scope.State, 
+        Zip: $scope.Zip, 
+        Email: $scope.Email,
+    });
 
-            var email = $scope.Email;
-            var password = $scope.Password;
+    var email = $scope.Email;
+    var password = $scope.Password;
 
-             
+    firebase.auth().setPersistence('local').then(function() {
+      firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
+        if ($scope.Name) {
+          var updates = {};
+          updates['userIdInContext'] = timestamp;
+          updates['userNameInContext'] = $scope.Name;
+          firebase.database().ref().child('/TempTable').update(updates);
 
-            firebase.auth().setPersistence('local')
-            .then(function() {
-            
-            firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
-                user.updateProfile({
-                displayName: $scope.Name
-                })
-                var path = "/home.html";
-                $window.location.href = path;
-            }).catch(function(error) {
-                window.alert('Error creating account' + error);
-            });
-           
-             })
-            .catch(function(error) {
-             // Handle Errors here.
-             var errorCode = error.code;
-             var errorMessage = error.message;
-            });
-
-        };
-
+          var tempRef = firebase.database().ref().child('/TempTable');
+          $scope.temp = $firebaseArray(tempRef);
+          tempRef.on('value', function(snapshot) {
+            CommonProp.setDisplayName(snapshot.val().userNameInContext);
+          });
+        }
+        $window.location.href = '/#!/homepage'
+      })
+      .catch(function(error) {
+        window.alert('Error creating account' + error);
+      });
+    })
+    .catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+    });
+  };
 }]);
