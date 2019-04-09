@@ -22,8 +22,6 @@ angular.module('cookEasy.resetPassword', ['ngRoute', 'firebase', 'ngSanitize'])
     $scope.submitEmail = function () {
 
         var email = $scope.Email;
-        
-        var t = false;
 
         firebase.auth().sendPasswordResetEmail(email).then(function()
         {
@@ -43,8 +41,7 @@ angular.module('cookEasy.resetPassword', ['ngRoute', 'firebase', 'ngSanitize'])
 
     $scope.return = function () {
 
-      var path = "/login.html";
-      window.location.href = path;
+      $window.location.href = '/#!/login'
     }
 
 }]);

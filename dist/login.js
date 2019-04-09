@@ -10,16 +10,13 @@ angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize'])
 }])
 
 .controller('LoginCtrl', ['$scope', '$window', '$firebaseArray',function($scope, $window, $firebaseArray) {
-    // firebase.auth().onAuthStateChanged(function(user) {
-    //   if (user) {
-        
-    //     var path = "/home.html";
-    //     window.location.href = path;
-    
-    //   } 
-    // });
+   
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          $window.location.href = '/#!/homepage'
+        } 
+      });
 
-    console.log("Akshat");
     var usersRef = firebase.database().ref();
 
     $scope.users = $firebaseArray(usersRef);
@@ -32,8 +29,7 @@ angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize'])
         .then(function() {
         
             firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-                var path = "/home.html";
-                $window.location.href = path;
+                $window.location.href = '/#!/homepage';
             }).catch(function(error) {
                 window.alert('Incorrect Login Credentials!');
             });
@@ -49,8 +45,7 @@ angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize'])
 
     $scope.resetPassword = function () {
 
-        var path = "/password_reset.html";
-        window.location.href = path;
+        $window.location.href = '/#!/reset';
 
     };  
 
