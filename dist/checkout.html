@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="checkout" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>CookEasy | Checkout</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="checkout.css">
+
+</head>
+
+<body ng-controller="checkoutCtrl">
+    <div id="crumbs">
+        
+        <ul>
+            <img src="img/core-img/cheffy_checkout.png" alt="" id="cheffy-img">
+            <li><a href="#!/homepage"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+            <li><a href="#!/recipe"><i class="fa fa-cutlery" aria-hidden="true"></i> Recipes</a></li>
+            <li><a href="#!/cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Cart</a></li>
+            <li><a href="#!/checkout" id = "active"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Checkout</a></li>
+        </ul>
+    </div>
+    <div class="body-row">
+        <div class="col-75">
+            <div class="checkout">
+                <form action="#">
+                    <div class="row">
+                        <div class="col-50">
+                            <h3>Billing Address</h3>
+                            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                            <input type="text" id="email" name="email" placeholder="john@example.com">
+                            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+                            <label for="city"><i class="fa fa-institution"></i> City</label>
+                            <input type="text" id="city" name="city" placeholder="New York">
+
+                            <div class="row">
+                                <div class="col-50">
+                                    <label for="state">State</label>
+                                    <input type="text" id="state" name="state" placeholder="NY">
+                                </div>
+                                <div class="col-50">
+                                    <label for="zip">Zip</label>
+                                    <input type="text" id="zip" name="zip" placeholder="10001">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-50">
+                            <h3>Payment</h3>
+                            <label for="fname">Accepted Cards</label>
+                            <div class="icon-container">
+                                <i class="fa fa-cc-visa" style="color:navy;"></i>
+                                <i class="fa fa-cc-amex" style="color:blue;"></i>
+                                <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                                <i class="fa fa-cc-discover" style="color:orange;"></i>
+                            </div>
+                            <label for="cname">Name on Card</label>
+                            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                            <label for="ccnum">Credit card number</label>
+                            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                            <label for="expmonth">Exp Month</label>
+                            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                            <div class="row">
+                                <div class="col-50">
+                                    <label for="expyear">Exp Year</label>
+                                    <input type="text" id="expyear" name="expyear" placeholder="2018">
+                                </div>
+                                <div class="col-50">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" name="cvv" placeholder="352">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <label>
+                        <input type="checkbox" 
+                                checked="checked" 
+                                name="sameadr"> Shipping address same as billing
+                    </label>
+                    <a href="#!/orderConfirmation" 
+                            value="Place Order" 
+                            class="btn" 
+                            ng-if="totalQuantity">Place Order</a>
+                </form>
+            </div>
+        </div>
+        <div class="col-25">
+            <div class="checkout">
+                <h4>Cart 
+                    <span class="price" style="color:black">
+                        <i class="fa fa-shopping-cart"></i> 
+                        <b>{{ totalQuantity }}</b>
+                    </span>
+                </h4>
+                <p ng-repeat="ingredient in ingredients">
+                    {{ ingredient.name }} ({{ ingredient.quantity }} {{ ingredient.unit }})
+                    <span class="price">${{ ingredient.cost | number : 2 }}</span>
+                </p>    
+                <hr>
+                Total 
+                <span class="price" style="color:black">
+                    <h5>${{ totalCost | number : 2 }}</h5>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="follow-us-instagram">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h5>Follow us on Instragram</h5>
+                </div>
+            </div>
+        </div>
+        <!-- Instagram Feeds -->
+        <div class="insta-feeds d-flex flex-wrap">
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta1.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta2.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta3.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta4.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta5.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta6.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta7.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Follow Us Instagram Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100 d-flex flex-wrap align-items-center justify-content-between">
+                    <!-- Footer Social Info -->
+                    <div class="footer-social-info text-right">
+                        <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    </div>
+                    <!-- Footer Logo -->
+                    <div class="footer-logo">
+                        <a href="#!/homepage"><img src="img/core-img/cookeasy_logo.png" alt=""></a>
+                    </div>
+                    <!-- Copywrite -->
+                    <p>
+                        Copyright © 2019 CookEasy - All Rights Reserved.
+                        <br />
+                        Developed by Team 6.
+                    </p> 
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+</body>
+
+</html>
