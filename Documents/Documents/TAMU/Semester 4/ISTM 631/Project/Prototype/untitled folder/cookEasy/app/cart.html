@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="checkout" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>CookEasy | Shopping Cart</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+</head>
+
+<body ng-controller="cartCtrl">
+    <div id="crumbs">
+        <ul>
+            <li><a href="#!/homepage"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+            <li><a href="#!/recipe"><i class="fas fa-utensils" aria-hidden="true"></i> Recipes</a></li>
+            <li id="cart"><a href="#!/cart" id = "active"><i class="fa fa-cart-plus" aria-hidden="true"></i> Cart</a></li>
+            <li><a href="#!/checkout"><i class="fas fa-credit-card" aria-hidden="true"></i> Checkout</a></li>
+        </ul>
+    </div>
+    <div class="body-row">
+        <div class="mx-auto col-md-10">
+            <div class="col-md-12 row mb-4">
+                <div class="col-md-12 text-right">
+                    <label id="itemCountLabel" class="btn mr-2 mt-2" ng-if="totalQuantity">
+                        <i class="fas fa-shopping-cart mr-2"></i>
+                        {{ totalQuantity }} items
+                    </label>
+                    <button id="emptyCartButton" class="btn mr-2" ng-click="emptyCart()" ng-if="totalQuantity">
+                        <i class="fas fa-trash-alt mr-2"></i>
+                        Empty Cart
+                    </button>
+                    <a href="/#!/checkout#top" id="checkoutButton" class="btn mr-2" ng-if="totalQuantity">
+                        <i class="fas fa-arrow-right mr-2"></i>
+                        Checkout
+                    </a>
+                </div>
+            </div>
+            <div class="row" id="cartIngredients">
+                <div class="col-12">
+                    <div class="card grey lighten-5 mb-4">
+                        <div class="card-body table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col"></th>
+                                        <th scope="col" width="180px">Quantity</th>
+                                        <th scope="col"></th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col" width="30px"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="ingredient in ingredients">
+                                        <td>{{ ingredient.name }}</td>
+                                        <td>${{ ingredient.pricePerUnit }} / ea</td>
+                                        <td><strong>x</strong></td>
+                                        <td>
+                                            <button ng-click="updateQuantity(ingredient,-1)" 
+                                                    class="btn btn-sm btn-secondary mr-2"
+                                                    id="increaseQuantity">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            {{ ingredient.quantity }} {{ingredient.unit}}
+                                            <button ng-click="updateQuantity(ingredient,1)" 
+                                                    class="btn btn-sm btn-secondary ml-2"
+                                                    id="decreaseQuantity">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </td>
+                                        <td><strong>=</strong></td>
+                                        <td>${{ ingredient.cost | number : 2 }}</td>
+                                        <td>
+                                            <button id="deleteIngredientButton" 
+                                                    class="btn btn-sm mt-0 pt-0" 
+                                                    ng-click="deleteIngredient(ingredient)"
+                                                    data-toggle="tooltip"
+                                                    title="Delete Ingredient">
+                                                <i class="h5 fas fa-trash-alt text-danger"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="col-md-12 text-right">
+                                <label id="totalLabel" class="btn mr-2 mt-3" ng-if="totalCost">
+                                    Total: ${{ totalCost | number : 2 }}
+                                </label>
+                                <a href="/#!/checkout#top" id="checkoutButton" class="btn mr-2 mt-2" ng-if="totalQuantity">
+                                    <i class="fas fa-arrow-right mr-2"></i>
+                                    Checkout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ##### Follow Us Instagram Area Start ##### -->
+    <div class="follow-us-instagram">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h5>Follow us on Instragram</h5>
+                </div>
+            </div>
+        </div>
+        <!-- Instagram Feeds -->
+        <div class="insta-feeds d-flex flex-wrap">
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta1.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta2.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta3.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta4.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta5.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta6.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!-- Single Insta Feeds -->
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta7.jpg" alt="">
+                <!-- Icon -->
+                <div class="insta-icon">
+                    <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Follow Us Instagram Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100 d-flex flex-wrap align-items-center justify-content-between">
+                    <!-- Footer Social Info -->
+                    <div class="footer-social-info text-right">
+                        <a href="#"><i class="fab fa-pinterest" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    </div>
+                    <!-- Footer Logo -->
+                    <div class="footer-logo">
+                        <a href="#!/homepage"><img src="img/core-img/cookeasy_logo.png" alt=""></a>
+                    </div>
+                    <!-- Copywrite -->
+                    <p>
+                        Copyright © 2019 CookEasy - All Rights Reserved.
+                        <br />
+                        Developed by Team 6.
+                    </p> 
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+</body>
+
+</html>
