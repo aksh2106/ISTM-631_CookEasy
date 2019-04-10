@@ -102,9 +102,14 @@
                                 </ul>
 
                                 <!-- Newsletter Form -->
-                                <div class="login-signup">
-                                    <a href="user/login.html">Login</a>&nbsp;/
-                                    <a href="user/signup.html">Sign-up</a>
+                                <div class="login-signup" ng-hide="show">
+                                    <a href="#!/login">Login</a>&nbsp;/
+                                    <a href="#!/signup">Sign-up</a>
+                                </div>
+
+                                <div class="loggedIn h5 ml-4 mr-4 mt-3" ng-show="show">
+                                    <label ng-bind="divText"></label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="#!/login" ng-click="signOut()">Sign out</a>
                                 </div>
                                 <div class="search-btn">
                                     <i class="fa fa-search" aria-hidden="true"></i>

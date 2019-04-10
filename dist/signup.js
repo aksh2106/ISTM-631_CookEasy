@@ -47,6 +47,10 @@ angular.module('cookEasy.signup', ['ngRoute', 'firebase', 'ngSanitize'])
             .then(function() {
             
             firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
+                var updates = {};
+                updates['userIdInContext'] = timestamp;
+                updates['userNameInContext'] = $scope.Name;
+                firebase.database().ref().child('/TempTable').update(updates);
 
                 CommonProp.setDisplayName($scope.Name);
                 $window.location.href = '/#!/homepage'
