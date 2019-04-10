@@ -10,22 +10,16 @@ angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
 }])
 
 .controller('cartCtrl', ['$scope', '$firebaseArray', 'cartService', 'CommonProp', function($scope, $firebaseArray, cartService, CommonProp){
-    var tempRef = firebase.database().ref().child('/TempTable');
-    $scope.temp = $firebaseArray(tempRef);
-    tempRef.on('value', function(snapUser) {
-        if(snapUser.val().userNameInContext) {
-            var fetchcartRef = firebase.database().ref().child('/ShoppingCart/'+snapUser.val().userNameInContext+'_cart');
-        } else {
-            var fetchcartRef = firebase.database().ref().child('/ShoppingCart/Cart1');
-        }    
-        $scope.cartInfo = $firebaseArray(fetchcartRef);
-        fetchcartRef.on('value', function(snapshot) {
-            $scope.user_id = snapshot.val().user_id;
-            $scope.ingredients = snapshot.val().Ingredients;
-            $scope.totalQuantity = snapshot.val().totalQuantity;
-            $scope.totalCost = snapshot.val().totalCost;
-            $scope.unit = snapshot.val().unit;
-        });
+
+    var fetchcartRef = firebase.database().ref().child('/ShoppingCart/Cart1');
+    $scope.cartInfo = $firebaseArray(fetchcartRef);
+    
+    fetchcartRef.on('value', function(snapshot) {
+        $scope.user_id = snapshot.val().user_id;
+        $scope.ingredients = snapshot.val().Ingredients;
+        $scope.totalQuantity = snapshot.val().totalQuantity;
+        $scope.totalCost = snapshot.val().totalCost;
+        $scope.unit = snapshot.val().unit;
     });
 
     $scope.updateQuantity = function(ingredient, num) {

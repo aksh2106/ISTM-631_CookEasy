@@ -101,22 +101,10 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
     var setCartRef = firebase.database().ref().child('PricePerUnitTable');
 
     var updates = {};
-
+    updates['user_id'] = 1;
     var totalQuantity = 0;
     var totalCost = 0;
-
-    var tempRef = firebase.database().ref().child('/TempTable');
-    $scope.temp = $firebaseArray(tempRef);
-    tempRef.on('value', function(snapUser) {
-      if(snapUser.val().userNameInContext) {
-        updates['user_id'] = snapUser.val().userIdInContext;
-        firebase.database().ref().child('/ShoppingCart/'+snapUser.val().userNameInContext+'_cart').set(updates);
-      }
-      else {
-        firebase.database().ref().child('/ShoppingCart/Cart1').set(updates);
-      }
-    });
-
+    firebase.database().ref().child('/ShoppingCart/Cart1').set(updates);
     angular.forEach($scope.items, function(element){
         setCartRef.on('value', function(snapshot) {
             snapshot.forEach(function(snap) {  
@@ -126,15 +114,7 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
                     totalCost += cost;
                     updates['totalQuantity'] = totalQuantity;
                     updates['totalCost'] = totalCost;
-
-                    tempRef.on('value', function(snapUser) {
-                      if(snapUser.val().userNameInContext) {
-                        firebase.database().ref().child('/ShoppingCart/'+snapUser.val().userNameInContext+'_cart').update(updates);
-                      } else {
-                        firebase.database().ref().child('/ShoppingCart/Cart1').update(updates);
-                      }
-                    });
-
+                    firebase.database().ref().child('/ShoppingCart/Cart1').update(updates);
                     var ingredientInfo = {}
                     ingredientInfo[snap.val().ingredientName] = {
                         pricePerUnit: snap.val().pricePerUnit,
@@ -143,14 +123,8 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
                         cost: cost,
                         unit: snap.val().unit
                     };
+                    firebase.database().ref().child('/ShoppingCart/Cart1/Ingredients').update(ingredientInfo);
 
-                    tempRef.on('value', function(snapUser) {
-                      if(snapUser.val().userNameInContext) {
-                        firebase.database().ref().child('/ShoppingCart/'+snapUser.val().userNameInContext+'_cart/Ingredients').update(ingredientInfo);
-                      } else {
-                        firebase.database().ref().child('/ShoppingCart/Cart1/Ingredients').update(ingredientInfo);
-                      }
-                    });
                 }
             });
         });
@@ -158,21 +132,12 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
     $window.location.href = "#!/cart";
   };
 
-  tempRef.on('value', function(snapUser) {
-    if(snapUser.val().userNameInContext) {
-      var fetchcartRef = firebase.database().ref().child('/ShoppingCart/'+snapUser.val().userNameInContext+'_cart');
-      $scope.cartInfo = $firebaseArray(fetchcartRef);
-    } 
-    else {
-      var fetchcartRef = firebase.database().ref().child('/ShoppingCart/Cart1');
-      $scope.cartInfo = $firebaseArray(fetchcartRef);
-    }
-    fetchcartRef.on('value', function(snapcart) {
-      $scope.totalQuantity = snapcart.val().totalQuantity;
-    });
+  var fetchcartRef = firebase.database().ref().child('/ShoppingCart/Cart1');
+  $scope.cartInfo = $firebaseArray(fetchcartRef);
+
+  fetchcartRef.on('value', function(snapshot) {
+    $scope.totalQuantity = snapshot.val().totalQuantity;
   });
-
-
 
 }])
 

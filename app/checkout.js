@@ -10,29 +10,20 @@ angular.module('cookEasy.checkout', ['ngRoute', 'firebase'])
 }])
 
 .controller('checkoutCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray){
-    var tempRef = firebase.database().ref().child('/TempTable');
-    $scope.temp = $firebaseArray(tempRef);
-    tempRef.on('value', function(snapUser) {
-        if(snapUser.val().userNameInContext) {
-            var checkoutRef = firebase.database().ref().child('/ShoppingCart/'+snapUser.val().userNameInContext+'_cart');
-        } else {
-            var checkoutRef = firebase.database().ref().child('/ShoppingCart/Cart1');
-        } 
-        $scope.checkout = $firebaseArray(checkoutRef);
-        checkoutRef.on('value', function(snapshot) {
-            $scope.user_id = snapshot.val().user_id;
-            $scope.ingredients = snapshot.val().Ingredients;
-            $scope.totalQuantity = 0;
-            snapshot.forEach(function(snap1) {
-                snap1.forEach(function(snap2) {
-                    $scope.totalQuantity += snap2.val().quantity;
-                });
+    const checkoutRef = firebase.database().ref().child('/ShoppingCart/Cart1');
+    checkoutRef.on('value', function(snapshot) {
+        $scope.user_id = snapshot.val().user_id;
+        $scope.ingredients = snapshot.val().Ingredients;
+        $scope.totalQuantity = 0;
+        snapshot.forEach(function(snap1) {
+            snap1.forEach(function(snap2) {
+                $scope.totalQuantity += snap2.val().quantity;
             });
-            $scope.totalCost = 0;
-            snapshot.forEach(function(snap1) {
-                snap1.forEach(function(snap2) {
-                    $scope.totalCost += snap2.val().cost;
-                });
+        });
+        $scope.totalCost = 0;
+        snapshot.forEach(function(snap1) {
+            snap1.forEach(function(snap2) {
+                $scope.totalCost += snap2.val().cost;
             });
         });
     });
