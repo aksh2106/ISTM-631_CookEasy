@@ -4,9 +4,9 @@ Course project for ISTM 631 focusing on UI fundamentals and creating a complete 
 ### Make your changes in both 'app' and 'dist' folder to keep them in sync. Simple solution is changing files in 'app' folder and in the end, copying entire contents of 'app' in 'dist'.
 
 ## Backlogs:
-1. Sort the login/signup and integrating with the website flow, `login`/ `sign up` space must change to `Hi username` and `logout` buttons on all pages when user logs in(Alok) - cart depends on a user_id so you need to let me know when done.
+1. ~~Sort the login/signup and integrating with the website flow, `login`/ `sign up` space must change to `Hi username` and `logout` buttons on all pages when user logs in(Alok) - cart depends on a user_id so you need to let me know when done.~~
 2. ~~Rectify Homepage - active.js, hero slider (please make it all look back to normal) (Akshat) [TIP: /homepage without the #! in the url looks fine, this is some angular shit making it crazy, maybe or maybe not] - you'll have to search how to include external js files when using angular (since angular only considers its own js file, for example: homepage.html considers only homepage.js, no other js files are loaded)~~
-3. Check and fix mobile views for login/signup (Alok)
+3. ~~Check and fix mobile views for login/signup (Alok)~~
 4. ~~Fix the missing footer for recipe page. Also, copy script from homepage to make search work with javascript(Varsha)~~
 5. ~~Check and fix mobile views for recipe page (Akshat)~~
 6. ~~Check and fix mobile views for cart/checkout (Akshat)~~
