@@ -2,7 +2,7 @@
   "_args": [
     [
       "angular-loader@1.7.5",
-      "/Users/akshat/Documents/Documents/TAMU/Semester 4/ISTM 631/Project/Prototype/untitled folder/cookEasy"
+      "/Users/akshat/Documents/Documents/TAMU/Semester 4/ISTM 631/Project/Prototype/final project/cookEasy-new"
     ]
   ],
   "_from": "angular-loader@1.7.5",
@@ -26,7 +26,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/angular-loader/-/angular-loader-1.7.5.tgz",
   "_spec": "1.7.5",
-  "_where": "/Users/akshat/Documents/Documents/TAMU/Semester 4/ISTM 631/Project/Prototype/untitled folder/cookEasy",
+  "_where": "/Users/akshat/Documents/Documents/TAMU/Semester 4/ISTM 631/Project/Prototype/final project/cookEasy-new",
   "author": {
     "name": "Angular Core Team",
     "email": "angular-core+npm@google.com"
