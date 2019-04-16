@@ -15,7 +15,7 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
     if (user) {
       var tempRef = firebase.database().ref().child('/TempTable');
       $scope.temp = $firebaseArray(tempRef);
-      
+
       tempRef.on('value', function(snapUser) {
         if(snapUser.val().userNameInContext)
           $scope.divText = 'Hello, ' + snapUser.val().userNameInContext + '! ';
@@ -24,7 +24,7 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
       });
       $scope.show = !$scope.show;
       $scope.$apply();
-    } 
+    }
   });
 
   $scope.signOut = function(){
@@ -54,8 +54,27 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
 
   $scope.setSearchText = function(value) {
     CommonProp.setSearchText(value);
-    $window.location.href='#!/recipe#top';
+    /*$window.location.href='#!/recipe#top';*/
   };
+
+  $scope.validateRecipe = function(value) {
+    var ref = firebase.database().ref('/RecipeTable');
+    var rec = $firebaseArray(ref);
+    var tosearch = $scope.searchText;
+    tosearch = tosearch.replace(/[\s]/g, '').toLowerCase();
+    rec.$loaded().then(function(){
+      angular.forEach(rec, function(record){
+        if(record.$id == tosearch){
+          CommonProp.setSearchText(tosearch);
+          $scope.errormsg=false;
+          $window.location.href='#!/recipe#top';
+        }
+      });
+      $scope.errormsg=true;
+      //console.log("Recipe not found. Please try again");
+    });
+  };
+
 
   var fetchcartRef = firebase.database().ref().child('/ShoppingCart/Cart1');
   $scope.cartInfo = $firebaseArray(fetchcartRef);
@@ -64,4 +83,12 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
     $scope.totalQuantity = snapshot.val().totalQuantity;
   });
 
+  $scope.subscribe = function() {
+    console.log("updating DB");
+    var ref = firebase.database().ref().child('/Subscribers');
+    ref.push({email: $scope.emailId});
+    $scope.subscribeSuccess = true;
+  };
+
+  $scope.subscribeSuccess = false;
 }])
