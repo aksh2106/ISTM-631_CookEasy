@@ -20,7 +20,7 @@ Course project for ISTM 631 focusing on UI fundamentals and creating a complete 
 14. ~~Persist searched recipe page till order is confirmed~~
 
 Late priority (maybe after prototype):
-1. If a recipe does not exist or if blank search is made by user, the recipe search should return proper message to user. Right now the redirection happens irrespective to recipe page which doesn’t show any content. (Varsha)
+1. ~~If a recipe does not exist or if blank search is made by user, the recipe search should return proper message to user. Right now the redirection happens irrespective to recipe page which doesn’t show any content. (Varsha)~~
 2. Persist selection of ingredients made by user on recipe page (Varsha)
 
 ## About taking a pull
