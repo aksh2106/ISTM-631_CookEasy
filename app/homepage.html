@@ -29,10 +29,14 @@
             <div class="row">
                 <div class="col-12">
                     <form>
-                        <input type="search" ng-model="searchText" placeholder="Enter recipe or cuisine...">
-                        <a href="#!/recipe" class="ml-3 h5">
+                        <input type="search" ng-model="searchText" placeholder="Enter recipe or cuisine..." ng-class={'highlightErr':errormsg}>
+                        <a href="" ng-click="validateRecipe()" class="ml-3 h5">
                             <i class="text-white fa fa-search" aria-hidden="true"></i>
                         </a>
+                        <span class="errormsg" ng-show="errormsg">
+                          <i ng-show="errormsg" class="fas fa-exclamation-triangle"></i>
+                          Recipe not found. Please try again!
+                        </span>
                     </form>
                 </div>
             </div>
@@ -180,7 +184,7 @@
                 </div>
             </div>
         </div>
-    </section> 
+    </section>
     <!-- ##### Hero Area End ##### -->
 
     <!-- ##### Best Receipe Area Start ##### -->
@@ -198,8 +202,8 @@
                 <!-- Single Best Receipe Area -->
                 <div class="col-12 col-sm-6 col-lg-4 mx-auto">
                     <div class="single-best-receipe-area mb-30">
-                        <img ng-click="setSearchText('vanilla icecream')" 
-                                src="/img/bg-img/vanilla-icecream-resized.jpg" 
+                        <img ng-click="setSearchText('vanilla icecream')"
+                                src="/img/bg-img/vanilla-icecream-resized.jpg"
                                 alt=""
                                 style="cursor: pointer;">
                         <div class="receipe-content pt-0">
@@ -220,8 +224,8 @@
                 <!-- Single Best Receipe Area -->
                 <div class="col-12 col-sm-6 col-lg-4 mx-auto">
                     <div class="single-best-receipe-area mb-30">
-                        <img src="/img/bg-img/r2.jpg" 
-                                ng-click="setSearchText('homemade burger')" 
+                        <img src="/img/bg-img/r2.jpg"
+                                ng-click="setSearchText('homemade burger')"
                                 alt=""
                                 style="cursor: pointer;">
                         <div class="receipe-content pt-0">
@@ -242,7 +246,7 @@
                 <!-- Single Best Receipe Area -->
                 <div class="col-12 col-sm-6 col-lg-4 mx-auto">
                     <div class="single-best-receipe-area mb-30">
-                        <img src="/img/bg-img/r3.jpg" 
+                        <img src="/img/bg-img/r3.jpg"
                                 alt=""
                                 ng-click="setSearchText('vegan smoothie')"
                                 style="cursor: pointer;">
@@ -264,7 +268,7 @@
                 <!-- Single Best Receipe Area -->
                 <div class="col-12 col-sm-6 col-lg-4 mx-auto">
                     <div class="single-best-receipe-area mb-30">
-                        <img src="/img/bg-img/r4.jpg" 
+                        <img src="/img/bg-img/r4.jpg"
                                 alt=""
                                 style="cursor: pointer;"
                                 ng-click="setSearchText('summer smoothie')">
@@ -286,7 +290,7 @@
                 <!-- Single Best Receipe Area -->
                 <div class="col-12 col-sm-6 col-lg-4 mx-auto">
                     <div class="single-best-receipe-area mb-30">
-                        <img src="/img/bg-img/r6.jpg" 
+                        <img src="/img/bg-img/r6.jpg"
                                 ng-click="setSearchText('healthy fruit dessert')"
                                 style="cursor: pointer;"
                                 alt="">
@@ -340,10 +344,11 @@
                     <h4>Subscribe to our newsletter</h4>
                     <!-- Form -->
                     <div class="newsletter-form bg-img bg-overlay" style="background-image: url(/img/bg-img/bg1.jpg);">
-                        <form action="#" method="post">
-                            <input type="email" name="email" placeholder="Enter your email">
-                            <button type="submit" class="btn delicious-btn w-100">Subscribe</button>
-                        </form>
+                        <div>
+                            <input type="email" ng-model="emailId" placeholder="Enter your email">
+                            <button class="btn delicious-btn w-100" ng-click="subscribe()">Subscribe</button>
+                            <p ng-show="subscribeSuccess"> Thank you for subscribing! </p>
+                        </div>
                         <p>Drop us your email and we would let you know of any new amazing recipes to make, as we continue to be innovative. We promise we won't spam you.</p>
                     </div>
                 </div>
