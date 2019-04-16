@@ -54,7 +54,7 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
 
   $scope.setSearchText = function(value) {
     CommonProp.setSearchText(value);
-    /*$window.location.href='#!/recipe#top';*/
+    $window.location.href='#!/recipe#top';
   };
 
   $scope.validateRecipe = function(value) {
