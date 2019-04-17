@@ -1,7 +1,9 @@
 'use strict';
 
+/* initialize cart module in angular */
 angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
 
+/* routes for cart.html page */
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/cart', {
         templateUrl: 'cart.html',
@@ -9,8 +11,10 @@ angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
     });
 }])
 
+/* controller logic for retreiving ingredients to cart, saving changes made to cart */
 .controller('cartCtrl', ['$scope', '$firebaseArray', 'cartService', 'CommonProp', function($scope, $firebaseArray, cartService, CommonProp){
 
+    /* fetch cart items from Firebase Realtime Database */
     var fetchcartRef = firebase.database().ref().child('/ShoppingCart/Cart1');
     $scope.cartInfo = $firebaseArray(fetchcartRef);
     
@@ -22,6 +26,7 @@ angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
         $scope.unit = snapshot.val().unit;
     });
 
+    /* update quantity for an ingredient and save changes to database */
     $scope.updateQuantity = function(ingredient, num) {
         if (ingredient.quantity + num < 0) {
             $scope.deleteIngredient(ingredient);
@@ -59,11 +64,13 @@ angular.module('cookEasy.cart', ['ngRoute', 'firebase'])
         }
     };
 
+    /* empty cart */
     $scope.emptyCart = function() {
         firebase.database().ref().child('/ShoppingCart/Cart1').remove();
         location.reload();
     };
 
+    /* delete a particular ingredient and save changes to database */
     $scope.deleteIngredient = function(ingredient) {
         firebase.database().ref().child('/ShoppingCart/Cart1/Ingredients/'+ingredient.name).remove();
 

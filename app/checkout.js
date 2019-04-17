@@ -1,7 +1,9 @@
 'use strict';
 
+/* initialize checkout module in angular */
 angular.module('cookEasy.checkout', ['ngRoute', 'firebase'])
 
+/* routes for checkout.html page */
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/checkout', {
         templateUrl: 'checkout.html',
@@ -9,7 +11,9 @@ angular.module('cookEasy.checkout', ['ngRoute', 'firebase'])
     });
 }])
 
+/* controller logic for retreiving cart summary at checkout and allow order placing functionality */
 .controller('checkoutCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray){
+    /* fetch cart items */
     const checkoutRef = firebase.database().ref().child('/ShoppingCart/Cart1');
     checkoutRef.on('value', function(snapshot) {
         $scope.user_id = snapshot.val().user_id;
@@ -28,6 +32,7 @@ angular.module('cookEasy.checkout', ['ngRoute', 'firebase'])
         });
     });
 
+    /* place order functionality */
     $scope.placeOrder = function() {
         var elements = document.getElementById("paymentDetailsForm").elements;
         for (var i = 0; i < elements.length; i++) {

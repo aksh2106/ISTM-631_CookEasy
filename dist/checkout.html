@@ -19,9 +19,10 @@
 
 </head>
 
+<!-- body start -->
 <body ng-controller="checkoutCtrl">
     <div id="crumbs">
-        
+        <!-- breadcrumb navigation -->
         <ul>
             <img src="img/core-img/cheffy_checkout.png" alt="" id="cheffy-img">
             <li><a href="#!/homepage"><i class="fa fa-home" aria-hidden="true"></i></a></li>
@@ -33,6 +34,7 @@
     <div class="body-row">
         <div class="col-75">
             <div class="checkout">
+                <!-- form for entering billing address -->
                 <form action="#">
                     <div class="row">
                         <div class="col-50">
@@ -57,6 +59,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- selecting payment method -->
                         <div class="col-50">
                             <h3>Payment</h3>
                             <label for="fname">Accepted Cards</label>
@@ -85,6 +88,7 @@
                         </div>
                     </div>
                     <label>
+                        <!-- checkbox to ease user's task of entering shipping address again -->
                         <input type="checkbox" 
                                 checked="checked" 
                                 name="sameadr"> Shipping address same as billing
@@ -96,6 +100,7 @@
                 </form>
             </div>
         </div>
+        <!-- cart summary at checkout to confirm user's cart items -->
         <div class="col-25">
             <div class="checkout">
                 <h4>Cart 
@@ -116,7 +121,7 @@
             </div>
         </div>
     </div>
-
+    <!-- footer start -->
     <div class="follow-us-instagram">
         <div class="container">
             <div class="row">
