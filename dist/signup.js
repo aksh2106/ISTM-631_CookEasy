@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('cookEasy.signup', ['ngRoute', 'firebase', 'ngSanitize'])
+
+angular.module('cookEasy.signup', ['ngRoute', 'firebase', 'ngSanitize', 'ngMaterial'])
 
 .config(['$routeProvider', function($routeProvider){
   $routeProvider.when('/signup', {
@@ -9,13 +10,15 @@ angular.module('cookEasy.signup', ['ngRoute', 'firebase', 'ngSanitize'])
   });
 }])
 
-.controller('AddUserCtrl', ['$scope', '$window', 'CommonProp', '$firebaseArray', function($scope, $window, CommonProp, $firebaseArray) {
+.controller('AddUserCtrl', ['$scope', '$window', 'CommonProp', '$firebaseArray', '$mdDialog', function($scope, $window, CommonProp, $firebaseArray, $mdDialog) {
 
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         $window.location.href = '/#!/homepage'
       } 
     });
+
+  
 
      var usersRef = firebase.database().ref().child('UserDetails');
 
@@ -52,10 +55,27 @@ angular.module('cookEasy.signup', ['ngRoute', 'firebase', 'ngSanitize'])
                 updates['userNameInContext'] = $scope.Name;
                 firebase.database().ref().child('/TempTable').update(updates);
 
+              
                 CommonProp.setDisplayName($scope.Name);
                 $window.location.href = '/#!/homepage'
+                
             }).catch(function(error) {
-                window.alert('Error creating account' + error);
+              
+                switch(error.code)
+                {
+                  case 'auth/email-already-in-use': 
+                  alert = $mdDialog.alert()
+        .title('Attention')
+        .content('A similar email is already in use!')
+        .ok('Ok');
+
+      $mdDialog
+          .show( alert )
+          .finally(function() {
+            alert = undefined;
+          });
+
+                }
             });
            
              })
