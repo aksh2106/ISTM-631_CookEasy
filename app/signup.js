@@ -1,6 +1,6 @@
 'use strict';
 
-
+/* Set up module and depencies*/
 angular.module('cookEasy.signup', ['ngRoute', 'firebase', 'ngSanitize', 'ngMaterial'])
 
 .config(['$routeProvider', function($routeProvider){
@@ -12,6 +12,7 @@ angular.module('cookEasy.signup', ['ngRoute', 'firebase', 'ngSanitize', 'ngMater
 
 .controller('AddUserCtrl', ['$scope', '$window', 'CommonProp', '$firebaseArray', '$mdDialog', function($scope, $window, CommonProp, $firebaseArray, $mdDialog) {
 
+      /* If user is logged in take them to the home page*/
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         $window.location.href = '/#!/homepage'
@@ -24,6 +25,7 @@ angular.module('cookEasy.signup', ['ngRoute', 'firebase', 'ngSanitize', 'ngMater
 
      $scope.users = $firebaseArray(usersRef);
 
+     /* Retrieve user details from the form and send them to the Firebase create user API */
      $scope.addUser = function () {
 
             // CREATE A UNIQUE ID
@@ -45,10 +47,11 @@ angular.module('cookEasy.signup', ['ngRoute', 'firebase', 'ngSanitize', 'ngMater
             var password = $scope.Password;
 
              
-
+            /* Store login details in 'local' cache*/
             firebase.auth().setPersistence('local')
             .then(function() {
             
+            /* If successful, store details in Firebase database*/
             firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
                 var updates = {};
                 updates['userIdInContext'] = timestamp;
@@ -61,6 +64,7 @@ angular.module('cookEasy.signup', ['ngRoute', 'firebase', 'ngSanitize', 'ngMater
                 
             }).catch(function(error) {
               
+              /* Create and display error dialog*/   
                 switch(error.code)
                 {
                   case 'auth/email-already-in-use': 

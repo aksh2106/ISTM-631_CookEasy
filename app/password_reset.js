@@ -1,5 +1,7 @@
 'use strict';
 
+/* Set up module and depencies*/
+
 angular.module('cookEasy.resetPassword', ['ngRoute', 'firebase', 'ngSanitize'])
 
 .config(['$routeProvider', function($routeProvider){
@@ -18,7 +20,7 @@ angular.module('cookEasy.resetPassword', ['ngRoute', 'firebase', 'ngSanitize'])
     $scope.users = $firebaseArray(usersRef);
 
 
-
+/* Retrieve email and send it to the Firebase reset password API */
     $scope.submitEmail = function () {
 
         var email = $scope.Email;
@@ -26,6 +28,7 @@ angular.module('cookEasy.resetPassword', ['ngRoute', 'firebase', 'ngSanitize'])
         firebase.auth().sendPasswordResetEmail(email).then(function()
         {
 
+          /* Modify UI on successful reset link being sent*/
            $scope.show = !$scope.show;
 
           $scope.$apply();
@@ -39,6 +42,7 @@ angular.module('cookEasy.resetPassword', ['ngRoute', 'firebase', 'ngSanitize'])
 
     };  
 
+    /* Redirect to the login page*/
     $scope.return = function () {
 
       $window.location.href = '/#!/login'

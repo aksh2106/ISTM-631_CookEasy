@@ -1,5 +1,6 @@
 'use strict';
 
+/* Set up module and depencies*/
 angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize', 'ngMaterial'])
 
 .config(['$routeProvider', function($routeProvider){
@@ -11,6 +12,7 @@ angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize', 'ngMateri
 
 .controller('LoginCtrl', ['$scope', '$window', '$firebaseArray', '$mdDialog',function($scope, $window, $firebaseArray, $mdDialog) {
    
+    /* If user is logged in take them to the home page*/
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           $window.location.href = '/#!/homepage'
@@ -21,6 +23,7 @@ angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize', 'ngMateri
 
     $scope.users = $firebaseArray(usersRef);
 
+    /* Retrieve email and password from the form, send them to the Friebase auth API*/
      $scope.login = function () {
         var email = $scope.Email;
         var password = $scope.Password;
@@ -28,9 +31,11 @@ angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize', 'ngMateri
         firebase.auth().setPersistence('local')
         .then(function() {
         
+            /* Successful Login*/
             firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
                 $window.location.href = '/#!/homepage';
             }).catch(function(error) {
+        /* Create and display error dialog*/   
                 alert = $mdDialog.alert()
         .title('Attention')
         .content('Incorrect login credentials!')
@@ -52,6 +57,7 @@ angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize', 'ngMateri
     };
 
 
+    /* Redirect to password reset page*/
     $scope.resetPassword = function () {
 
         $window.location.href = '/#!/reset';
