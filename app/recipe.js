@@ -14,7 +14,7 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
     if (user) {
       var tempRef = firebase.database().ref().child('/TempTable');
       $scope.temp = $firebaseArray(tempRef);
-      
+
       tempRef.on('value', function(snapUser) {
         if(snapUser.val().userNameInContext)
           $scope.divText = 'Hello, ' + snapUser.val().userNameInContext + '! ';
@@ -23,7 +23,7 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
       });
       $scope.show = !$scope.show;
       $scope.$apply();
-    } 
+    }
   });
 
   $scope.signOut = function(){
@@ -36,11 +36,13 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
     });
   }
 
+  /*Retrive the search text set in the CommonProp service and get the corresponding recipe from DB */
+
   $scope.searchText = CommonProp.getSearchText();
   $scope.title = $scope.searchText;
 
+  /* Remove spaces and special characters from the user entered string. Convert everything to lowercase */
   if ($scope.searchText) {
-    //Remove spaces
     $scope.searchText = $scope.searchText.replace(/[\s]/g, '').toLowerCase();
 
     var updates = {};
@@ -54,9 +56,10 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
   tempRef.on('value', function(snapshot) {
     $scope.searchText = snapshot.val().recipeInContext;
 
+    /* Populate the video, ingredients and Instructions section from the database by binding to the correct scope variables */
     var ref = firebase.database().ref().child('RecipeTable/'+$scope.searchText+'/Ingredients');
     $scope.ingredients = $firebaseArray(ref);
-  
+
     $scope.createRecipe = function() {
       var name = $scope.ingredient.ingredientName;
       var val =  $scope.ingredient.ingredientVal;
@@ -69,14 +72,15 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
         console.log(error);
       });
     };
-  
+
     var ref2 = firebase.database().ref().child('RecipeTable/'+$scope.searchText+'/Instructions');
     $scope.steps = $firebaseArray(ref2);
-  
+
     var ref3 = firebase.database().ref().child('RecipeTable/'+$scope.searchText+'/Video');
     $scope.videos = $firebaseArray(ref3);
   });
 
+  /* Filter to allow videos to be embed into the iframe on our page */
   $scope.trustedSrc = function(src){
     return $sce.trustAsResourceUrl(src);
   };
@@ -86,7 +90,7 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
     return filterFilter($scope.ingredients, { selected: true });
   };
 
-  /*Watch items for changes*/
+  /*Watch ingredients for changes. If the user unselects the item, remove it from our list*/
   $scope.$watch('ingredients|filter:{selected:true}', function(nv) {
     $scope.selection = nv.map(function(ingredient) {
       return ingredient.name;
@@ -111,7 +115,7 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
     firebase.database().ref().child('/ShoppingCart/Cart1').set(updates);
     angular.forEach($scope.items, function(element){
         setCartRef.on('value', function(snapshot) {
-            snapshot.forEach(function(snap) {  
+            snapshot.forEach(function(snap) {
                 if(snap.val().ingredientName == element){
                     var cost = snap.val().defaultQuantity * snap.val().pricePerUnit;
                     totalQuantity += snap.val().defaultQuantity;
