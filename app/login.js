@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize'])
+angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize', 'ngMaterial'])
 
 .config(['$routeProvider', function($routeProvider){
   $routeProvider.when('/login', {
@@ -9,7 +9,7 @@ angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize'])
   });
 }])
 
-.controller('LoginCtrl', ['$scope', '$window', '$firebaseArray',function($scope, $window, $firebaseArray) {
+.controller('LoginCtrl', ['$scope', '$window', '$firebaseArray', '$mdDialog',function($scope, $window, $firebaseArray, $mdDialog) {
    
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -31,7 +31,16 @@ angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize'])
             firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
                 $window.location.href = '/#!/homepage';
             }).catch(function(error) {
-                window.alert('Incorrect Login Credentials!');
+                alert = $mdDialog.alert()
+        .title('Attention')
+        .content('Incorrect login credentials!')
+        .ok('Ok');
+
+      $mdDialog
+          .show( alert )
+          .finally(function() {
+            alert = undefined;
+          });
             });
         
         })
