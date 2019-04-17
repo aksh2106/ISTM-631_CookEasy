@@ -93,6 +93,7 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
     });
   }, true);
 
+  /* add ingredients to cart */
   $scope.addtoCart = function(){
     CommonProp.setSelectedItems($scope.selection);
     $scope.items = CommonProp.getSelectedItems();
@@ -104,6 +105,9 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
     updates['user_id'] = 1;
     var totalQuantity = 0;
     var totalCost = 0;
+    /* store ingredients requested from recipe page to shoppingcart table in Firebase Realtime Database */
+    /* cart is stored in database here to persist the cart items in case user navigates to different pages
+      before actually placing the order */
     firebase.database().ref().child('/ShoppingCart/Cart1').set(updates);
     angular.forEach($scope.items, function(element){
         setCartRef.on('value', function(snapshot) {
@@ -132,6 +136,7 @@ angular.module('cookEasy.recipe', ['ngRoute', 'firebase', 'ngSanitize'])
     $window.location.href = "#!/cart";
   };
 
+  /* fetch cart details */
   var fetchcartRef = firebase.database().ref().child('/ShoppingCart/Cart1');
   $scope.cartInfo = $firebaseArray(fetchcartRef);
 

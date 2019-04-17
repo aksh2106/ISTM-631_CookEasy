@@ -1,7 +1,9 @@
 'use strict';
 
+/* initialize orderConfirmation module in angular */
 angular.module('cookEasy.orderConfirmation', ['ngRoute', 'firebase'])
 
+/* routes for orderConfirmation.html page */
 .config(['$routeProvider', function($routeProvider){
   $routeProvider.when('/orderConfirmation', {
     templateUrl: 'orderConfirmation.html',
@@ -9,6 +11,7 @@ angular.module('cookEasy.orderConfirmation', ['ngRoute', 'firebase'])
   });
 }])
 
+/* controller logic for confirming order and generating order number, also clearing cart items for new session */
 .controller('orderConfirmationCtrl', ['$scope', '$firebaseArray', '$window', 'CommonProp', function($scope, $firebaseArray, $window, CommonProp){
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -26,6 +29,7 @@ angular.module('cookEasy.orderConfirmation', ['ngRoute', 'firebase'])
     } 
   });
 
+  /* signout functionality */
   $scope.signOut = function(){
     firebase.auth().signOut().then(function() {
       // Sign out successful.
@@ -35,7 +39,8 @@ angular.module('cookEasy.orderConfirmation', ['ngRoute', 'firebase'])
       console.log(error);
     });
   }
-
+  
+  /* fetch user testimonials from database */
   var ref = firebase.database().ref().child('UserTestimonials');
   $scope.testimonials = $firebaseArray(ref);
 
@@ -64,6 +69,7 @@ angular.module('cookEasy.orderConfirmation', ['ngRoute', 'firebase'])
     $scope.totalQuantity = snapshot.val().totalQuantity;
   });
 
+  /* remove recipe and user persisted in scope throughout user journey */
   firebase.database().ref().child('/ShoppingCart/Cart1').remove();
   firebase.database().ref().child('/TempTable/recipeInContext').remove();
 }])

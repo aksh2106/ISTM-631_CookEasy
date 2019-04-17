@@ -1,7 +1,9 @@
 'use strict';
 
+/* initialize about page module in angular */
 angular.module('cookEasy.about', ['ngRoute', 'firebase'])
 
+/* routes for about.html page */
 .config(['$routeProvider', function($routeProvider){
   $routeProvider.when('/about', {
     templateUrl: 'about.html',
@@ -9,6 +11,7 @@ angular.module('cookEasy.about', ['ngRoute', 'firebase'])
   });
 }])
 
+/* controller logic for enabling sign in/sign out, allowing recipe search in about page */
 .controller('aboutCtrl', ['$scope', '$firebaseArray', '$window', 'CommonProp', function($scope, $firebaseArray, $window, CommonProp){
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -26,6 +29,7 @@ angular.module('cookEasy.about', ['ngRoute', 'firebase'])
     } 
   });
 
+  /* sign out functionality */
   $scope.signOut = function(){
     firebase.auth().signOut().then(function() {
       // Sign out successful.
@@ -36,6 +40,7 @@ angular.module('cookEasy.about', ['ngRoute', 'firebase'])
     });
   }
 
+  /* fetch user testimonials from database */
   var ref = firebase.database().ref().child('UserTestimonials');
   $scope.testimonials = $firebaseArray(ref);
 
