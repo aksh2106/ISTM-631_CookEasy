@@ -65,7 +65,7 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
     rec.$loaded().then(function(){
       angular.forEach(rec, function(record){
         if(record.$id == tosearch){
-          CommonProp.setSearchText(tosearch);
+          CommonProp.setSearchText($scope.searchText);
           $scope.errormsg=false;
           $window.location.href='#!/recipe#top';
         }
