@@ -37,9 +37,11 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
     });
   }
 
+  /* fetch the user testimonials from the database */
   var ref = firebase.database().ref().child('UserTestimonials');
   $scope.testimonials = $firebaseArray(ref);
 
+  /*Watch the input text box for changes. Every time the user changes the text in the text box, update the Common prop service */
   $scope.$watch('searchText', function(){
     CommonProp.setSearchText($scope.searchText);
   });
@@ -48,6 +50,7 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
     $scope.showSearch = !$scope.showSearch;
   };
 
+  /* When the user clicks on the icons of the recipes, redirect to the right recipe */
   $scope.redirectToRecipe = function(){
     $window.location.href='#!/recipe#top';
   };
@@ -57,11 +60,16 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
     $window.location.href='#!/recipe#top';
   };
 
+  /* when the user enters data in the text box, check if the recipe exists.
+  If exists - redirect to the recipe page
+  If it doesnt exist - display error message */
   $scope.validateRecipe = function(value) {
     var ref = firebase.database().ref('/RecipeTable');
     var rec = $firebaseArray(ref);
     var tosearch = $scope.searchText;
     tosearch = tosearch.replace(/[\s]/g, '').toLowerCase();
+
+    /* Logic to check if recipe exists in the database */
     rec.$loaded().then(function(){
       angular.forEach(rec, function(record){
         if(record.$id == tosearch){
@@ -71,11 +79,10 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
         }
       });
       $scope.errormsg=true;
-      //console.log("Recipe not found. Please try again");
     });
   };
 
-
+  /*Update the cart info on the right hand corner*/
   var fetchcartRef = firebase.database().ref().child('/ShoppingCart/Cart1');
   $scope.cartInfo = $firebaseArray(fetchcartRef);
 
@@ -83,12 +90,12 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
     $scope.totalQuantity = snapshot.val().totalQuantity;
   });
 
+  /* If a user wishes to subscribe, add the email id to the subscribers database */
   $scope.subscribe = function() {
     console.log("updating DB");
     var ref = firebase.database().ref().child('/Subscribers');
     ref.push({email: $scope.emailId});
     $scope.subscribeSuccess = true;
   };
-
   $scope.subscribeSuccess = false;
 }])
