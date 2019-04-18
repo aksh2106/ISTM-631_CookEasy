@@ -33,6 +33,9 @@ angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize', 'ngMateri
         
             /* Successful Login*/
             firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+              var updates = {};
+              updates['userNameInContext'] = email;
+              firebase.database().ref().child('/TempTable').update(updates);
                 $window.location.href = '/#!/homepage';
             }).catch(function(error) {
         /* Create and display error dialog*/   
