@@ -10,7 +10,7 @@ angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize', 'ngMateri
   });
 }])
 
-.controller('LoginCtrl', ['$scope', '$window', '$firebaseArray', '$mdDialog',function($scope, $window, $firebaseArray, $mdDialog) {
+.controller('LoginCtrl', ['$scope', '$window', 'CommonProp', '$firebaseArray', '$mdDialog',function($scope, $window, CommonProp, $firebaseArray, $mdDialog) {
    
     /* If user is logged in take them to the home page*/
     firebase.auth().onAuthStateChanged(function(user) {
@@ -33,9 +33,13 @@ angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize', 'ngMateri
         
             /* Successful Login*/
             firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-              var updates = {};
-              updates['userNameInContext'] = email;
-              firebase.database().ref().child('/TempTable').update(updates);
+
+                var updates = {};
+                updates['userNameInContext'] = email;
+                firebase.database().ref().child('/TempTable').update(updates);
+                
+                CommonProp.setEmail(email);
+                
                 $window.location.href = '/#!/homepage';
             }).catch(function(error) {
         /* Create and display error dialog*/   

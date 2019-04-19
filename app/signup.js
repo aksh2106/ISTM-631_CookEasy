@@ -53,13 +53,13 @@ angular.module('cookEasy.signup', ['ngRoute', 'firebase', 'ngSanitize', 'ngMater
             
             /* If successful, store details in Firebase database*/
             firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
-                var updates = {};
-                updates['userIdInContext'] = timestamp;
-                updates['userNameInContext'] = $scope.Name;
-                firebase.database().ref().child('/TempTable').update(updates);
+              var updates = {};
+              updates['userIdInContext'] = timestamp;
+              updates['userNameInContext'] = $scope.Name;
+              firebase.database().ref().child('/TempTable').update(updates);                
 
-              
-                CommonProp.setDisplayName($scope.Name);
+
+              CommonProp.setDisplayName($scope.Name);
                 $window.location.href = '/#!/homepage'
                 
             }).catch(function(error) {

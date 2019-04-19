@@ -12,6 +12,7 @@ angular.module('cookEasy.search', ['ngRoute', 'firebase'])
 .service('CommonProp', function(){
       var searchTextService = "";
       var displayName = "";
+      var email = "";
       var selectedItems = [];
       return {
         setSearchText: function(value){
@@ -19,6 +20,10 @@ angular.module('cookEasy.search', ['ngRoute', 'firebase'])
         },
         setDisplayName: function(value){
           displayName = value;
+        },
+        setEmail: function(value)
+        {
+          email = value;
         },
         getSearchText: function(){
           return searchTextService;
@@ -31,6 +36,9 @@ angular.module('cookEasy.search', ['ngRoute', 'firebase'])
         },
         getDisplayName: function() {
           return displayName;
+        },
+        getEmail: function() {
+          return email;
         }
       }
 })
