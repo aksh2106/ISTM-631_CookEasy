@@ -14,7 +14,6 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
 
-
       if(CommonProp.getDisplayName() === "")
      {
       var tempRef = firebase.database().ref().child('/UserDetails');
@@ -40,14 +39,33 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
 
 
       $scope.divText = 'Hello, ' + CommonProp.getDisplayName() + '! ';
-    
-
       $scope.show = !$scope.show;
       $scope.$apply();
+
     }
   });
 
+  /* Check if Admin is logged in, show database link*/
+  if(CommonProp.getAdminView())
+  {
+
+
+      $scope.divText = 'Hello, ' + 'Admin' + '! '; 
+
+      $scope.admin = !$scope.admin;
+
+      $scope.show = !$scope.show;
+
+  }
+
   $scope.signOut = function(){
+
+    if(CommonProp.getAdminView())
+  {
+    CommonProp.resetAdminView();
+  }
+  else
+  {
     firebase.auth().signOut().then(function() {
       // Sign out successful.
       firebase.database().ref().child('/TempTable/userIdInContext').remove();
@@ -55,6 +73,7 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
     }, function(error) {
       console.log(error);
     });
+  }
   }
 
   /* fetch the user testimonials from the database */
@@ -101,6 +120,7 @@ angular.module('cookEasy.homepage', ['ngRoute', 'firebase'])
       $scope.errormsg=true;
     });
   };
+
 
   /*Update the cart info on the right hand corner*/
   var fetchcartRef = firebase.database().ref().child('/ShoppingCart/Cart1');

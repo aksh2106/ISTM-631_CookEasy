@@ -14,6 +14,7 @@ angular.module('cookEasy.search', ['ngRoute', 'firebase'])
       var displayName = "";
       var email = "";
       var selectedItems = [];
+      var isAdmin = false;
       return {
         setSearchText: function(value){
           searchTextService = value;
@@ -24,6 +25,12 @@ angular.module('cookEasy.search', ['ngRoute', 'firebase'])
         setEmail: function(value)
         {
           email = value;
+        },
+        setAdminView: function() {
+          isAdmin = true;
+        },
+        resetAdminView: function() {
+          isAdmin = false;
         },
         getSearchText: function(){
           return searchTextService;
@@ -39,6 +46,9 @@ angular.module('cookEasy.search', ['ngRoute', 'firebase'])
         },
         getEmail: function() {
           return email;
+        },
+        getAdminView: function() {
+          return isAdmin;
         }
       }
 })
