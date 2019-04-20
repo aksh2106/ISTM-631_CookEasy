@@ -41,18 +41,9 @@ angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize', 'ngMateri
                 CommonProp.setEmail(email);
                 
                 $window.location.href = '/#!/homepage';
-            }).catch(function(error) {
-        /* Create and display error dialog*/   
-                alert = $mdDialog.alert()
-        .title('Attention')
-        .content('Incorrect login credentials!')
-        .ok('Ok');
+            }).catch(function(error) {  
 
-      $mdDialog
-          .show( alert )
-          .finally(function() {
-            alert = undefined;
-          });
+    dialog();
             });
         
         })
@@ -70,5 +61,42 @@ angular.module('cookEasy.login', ['ngRoute', 'firebase', 'ngSanitize', 'ngMateri
         $window.location.href = '/#!/reset';
 
     };  
+
+    $scope.adminView = function () {
+
+        $scope.show = !$scope.show;
+
+    }
+
+    $scope.adminLogin = function () {
+
+       var aEmail = $scope.adminEmail;
+       var aPass = $scope.adminPass;
+
+       if(aEmail !== 'chris@gmail.com' && aPass !== 'abcdef')
+       {
+            dialog();
+       }
+       else{
+            CommonProp.setAdminView();
+            $window.location.href = '/#!/homepage';
+       }
+    }
+
+    /* Create and display error dialog*/   
+    function dialog()
+    {
+        alert = $mdDialog.alert()
+        .title('Attention')
+        .content('Incorrect login credentials!')
+        .ok('Ok');
+
+      $mdDialog
+          .show( alert )
+          .finally(function() {
+            alert = undefined;
+          });
+    }
+
 
 }]);
