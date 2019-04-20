@@ -15,7 +15,8 @@ angular.module('cookEasy', [
   'cookEasy.orderConfirmation',
   'cookEasy.about',
   'cookEasy.contact',
-  'cookEasy.404'
+  'cookEasy.404',
+  'cookEasy.admin'
 ])
 
 .directive('script', function() {
