@@ -15,19 +15,24 @@ angular.module('cookEasy.contact', ['ngRoute', 'firebase'])
 .controller('contactCtrl', ['$scope', '$firebaseArray', '$window', 'CommonProp', function($scope, $firebaseArray, $window, CommonProp){
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      var tempRef = firebase.database().ref().child('/TempTable');
-      $scope.temp = $firebaseArray(tempRef);
-      
-      tempRef.on('value', function(snapUser) {
-        if(snapUser.val().userNameInContext)
-          $scope.divText = 'Hello, ' + snapUser.val().userNameInContext + '! ';
-        else
-          $scope.divText = 'Hello!'
-      });
+      $scope.divText = 'Hello, ' + CommonProp.getDisplayName() + '! ';
       $scope.show = !$scope.show;
       $scope.$apply();
     } 
   });
+
+  /*Check if admin is logged in*/
+  if(CommonProp.getAdminView())
+  {
+
+
+      $scope.divText = 'Hello, ' + 'Admin' + '! '; 
+
+      $scope.admin = !$scope.admin;
+
+      $scope.show = !$scope.show;
+
+  }
 
   /* sign out functionality */
   $scope.signOut = function(){
