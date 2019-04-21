@@ -1645,3 +1645,18 @@ input:checked + .slider:before {
 input:focus {
     background-color: #fff;
 }
+
+.divContainer {
+width:100%;
+padding:10%;
+}
+
+.contactDiv {
+width:33.33%;
+float:left;
+}
+
+.queryDiv {
+width:100%;
+padding-left:10%;
+}
